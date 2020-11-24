@@ -412,7 +412,7 @@ const storyPath = [
         ]),
 
     new storyNode(28,
-        "Fuklar: \"Aye, you are a cunning warrior and a keen mind, you shall pass Nordir of Elroy." +
+        "Fuklar: \"Aye, you are a cunning warrior and a keen mind, you shall pass, Nordir of Elroy." +
         " Good luck on your quest.\"\n And like a friend, Fuklar departs from Nordir and wishes him well. " +
         "Nordir continues on the path and reaches the gates of York. The land is shrowded in darkness and distruction. " +
         "\"No guards?\" Nordir thinks to himself. He opens the gates and heads in. The final battle is upon him.",
@@ -597,8 +597,8 @@ const storyPath = [
         "father was a noble warrior and left me alive. The spirits who took him were not soldiers of " +
         "my own they were men of the Elder Realm!\"\n Nordir was skepical, the Montcore have a mastery of " +
         "tricks to decieve warriors, but this was different. Aant' El's eye was pleading for mercy. " +
-        "\nAant' El: \"The Elder Realm's leader Tarbious Gailore is coming to take our realms and use" +
-        " our bodies as guts for their dogs. Only with me will you be powerful enough to defeat this terrible realm.\" ",
+        "\nAant' El: \"The Elder Realm's leader, Tarbious Gailore, is coming to take our realms and use" +
+        " our bodies as guts for their dogs. Only with me, will you be powerful enough to defeat this terrible realm.\" ",
         [
             {
                 text: "Join him",
@@ -629,7 +629,7 @@ const storyPath = [
         "Nordir: \"I trust not in your idle game as much as I fail to trust in your ghostly figure Aant' El.\" " +
         "Nordir slices the projection's head clean off and Aant' El's illusion fades into smoke. " +
         "Aant' El comes behind Nordir. \nNordir: \"Resorting to smoke and mirrors Aant' El? I thought you were a " +
-        "more cunning warrior that that.\" \nAant' El: \"As I thought of you to be more of a fool, nevertheless " +
+        "more cunning warrior that that.\" \nAant' El: \"As I thought of you to be more of a fool, nevertheless, " +
         "I'll take your soul as you die by my real hands.\" ",
         [
             {
