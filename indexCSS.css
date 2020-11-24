@@ -1,0 +1,192 @@
+/*
+Austin Lindquist
+LMC 2700 - Intro to Computational Media
+CSS: index.html
+*/
+
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+html {
+    height: 100%;
+    background: url("template.jpg") no-repeat center center fixed;
+    /* background: url("title-background.png") no-repeat center center fixed; */
+    background-size: cover;
+    background-repeat: repeat;
+}
+body {
+    height: 100%;
+}
+
+
+/*-------------------- TITLE SCREEN UI --------------------*/
+.title-screen {
+    display: none; /*remove/add this line to turn on and off the title screen*/
+    text-align: center;
+    align-self: center;
+}
+#title {
+    height: 25%;
+    padding-top: 5%;
+    padding-bottom: 10%;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+#nordir {
+    height: 100%;
+}
+#start {
+    width: 20%;
+    height: auto;
+    padding: 5px;
+    position: absolute;
+    transition: 0.2s;
+    left: 40%;
+}
+#start:hover {
+    transform : matrix(1.1, 0, 0, 1.1, 0, 0);
+}
+#start-img {
+    width: 100%;
+}
+
+/*-------------------- DIALOG UI --------------------*/
+.dialog {
+    /*display: none;*/
+    text-align: center;
+    align-self: center;
+}
+.bars {
+    /* display: none; */
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+    height: 35%;
+    bottom: 5%;
+    position: absolute;
+}
+#dialog-bar {
+    background-color: #152530;
+    opacity: 0.9;
+    border-width: 3px;
+    border-style: solid;
+    border-color: black;
+    border-radius: 25px;
+}
+#text-bar {
+    color: white;
+    text-align: left;
+    line-height: 1.8;
+    height: 25%;
+    width: auto;
+    bottom: 10%;
+    font-family: 'DK Northumbria';
+    font-size: 1.8vw;
+    padding-left: 4%;
+    padding-right: 4%;
+    overflow: auto;
+    user-select: none;
+}
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/*-------------------- COMBAT UI --------------------*/
+.combat {
+    visibility: hidden;
+}
+
+/*-------------------- DIALOG UI --------------------*/
+.characters {
+    /* display: none;  */
+    bottom: 0%;
+    height: 80%;
+    width: 15%;
+    background-color: yellow;
+}
+#main-character {
+    left: 15%;
+    position: absolute;
+    
+}
+#other-character {
+    right: 15%;
+    position: absolute;
+}
+#main-character:hover {
+    transition: 2s;
+    transform: translateX(-100%);
+    opacity: 0.0;
+}
+#other-character:hover {
+    transition: 2s;
+    transform: translateX(100%);
+    opacity: 0.0;
+}
+
+/*-------------------- CHOICES UI --------------------*/
+
+#choices {
+    display: flex;
+    /* display: none; */
+    justify-content: center;
+    align-content: center;
+    align-self: center;
+    bottom: 1%;
+    width: 80%;
+    height: 8%;
+    margin-left: 10%;
+    margin-right: 10%;
+    position: absolute;
+    flex-wrap: wrap;
+    gap: 5%;
+
+}
+.choice {
+    display: flex;
+    /* display: none; */
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    height: 80%;
+    padding-left: 2%;
+    padding-right: 2%;
+    background-color: #152530;
+    color: white;
+    font-family: 'DK Northumbria';
+    font-size: 1.2vw;
+    white-space: nowrap;
+    border-width: 2px;
+    border-style: solid;
+    border-color: white;
+    border-radius: 25px;
+    user-select: none;
+}
+
+#choice-1:hover {
+    background-color: orange;
+}
+#choice-2:hover {
+    background-color: orange;
+}
+#exchange:hover {
+    background-color: orange;
+}
+#exchange {
+    /* display: none; */
+}
