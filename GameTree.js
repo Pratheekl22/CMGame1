@@ -4,22 +4,66 @@ let state = {};
 let playerPersonality = new personality("Good", 50, 50)
 let player = new character("Jim", "Player", playerPersonality, null);
 
+const weapons = [
+                 new weapon("Hollow Blade", "Sword", 0, 0, false),
+                 new weapon("Excalibur", "Sword", 40, 80, true),
+                 new weapon("Sword1", "Sword", 40, 80, true),
+                 new weapon("Sword2", "Sword", 40, 80, true),
+                 new weapon("Sword3", "Sword", 40, 80, true),
+                 new weapon("Sword4", "Sword", 40, 80, true),
+                 new weapon("Sword5", "Sword", 40, 80, true),
+                 new weapon("Sword6", "Sword", 40, 80, true),
+                 new weapon("Durendal", "Sword", 100, 100, true),
+                ];
+
+var weap = -1;
+function randomFromArray(arr){
+    weap =  Math.floor(Math.random() * arr.length);
+    return weap;
+}
+
 function startGame() {
     state = {};
     showText(1);
 }
 
+function changeWeapon(oldWeapon, newWeapon) {
+    if (player.weapon === oldWeapon) {
+        player.weapon = newWeapon;
+    } else {
+        player.weapon = oldWeapon
+    }
+
+    console.log(textElement.innerText.indexOf("You swapped to"));
+    if (textElement.innerText.indexOf("You swapped to") !== -1) {
+        textElement.innerText = textElement.innerText.slice(0, textElement.innerText.indexOf("You swapped to"));
+    }
+
+    textElement.innerText += " You swapped to " + player.weapon.name;
+    console.log(player.weapon);
+}
+
 function showText(textIndex) {
+    console.log(player.weapon)
     const currentNode = storyPath.find(storyNode => storyNode.id === textIndex)
     textElement.innerText = currentNode.text;
     while (optionButtons.firstChild) {
         optionButtons.removeChild(optionButtons.firstChild);
     }
 
+    let swapCheck = false;
     currentNode.options.forEach(option => {
-        if (option.type == weapon) {
-            player.weapon = option;
-            console.log('player has a weapon' + option.name);
+        if (currentNode.id === 1) {
+            player.weapon = new weapon("Sword of Thundership", "Sword", 10, .33, false);
+        }
+
+        if (currentNode instanceof weaponNode && swapCheck === false) {
+            const button = document.createElement('button');
+            button.innerText = "Exchange Your Weapon";
+            let oldWeapon = player.weapon;
+            button.addEventListener('click', () => changeWeapon(oldWeapon, weapons[currentNode.weaponID]));
+            optionButtons.appendChild(button);
+            swapCheck = true;
         }
 
         if(showOption(option)) {
@@ -29,6 +73,8 @@ function showText(textIndex) {
             optionButtons.appendChild(button);
         }
     })
+
+    swapCheck = false;
 }
 
 function showOption(option) {
@@ -49,7 +95,7 @@ const storyPath = [
             [{
                 text: "Read letter",
                 nextText: 2
-            }]),
+            }], false),
         new storyNode(2,
             "Dearest Nordir,\n If you're reading this I am dead. In death, I leave you the Sword of Thundership " +
             "forged from the flames of Mount Furst, use it wisely. I haven't much time so I must tell you this, I am dead because of " +
@@ -66,7 +112,7 @@ const storyPath = [
                 {
                     text: "Forge another weapon",
                     nextText: 3
-                }]),
+                }], false),
     {
         id: 99,
         text: "Nordir has DIED, perhaps better choices won't seal your fate next time....",
@@ -82,7 +128,7 @@ const storyPath = [
             [{
                 text: "Continue",
                 nextText: 4
-            }]),
+            }], false),
         new storyNode(4,
             "\"Which way should I go?\" Nordir thinks to himeslf.",
             [{
@@ -92,7 +138,7 @@ const storyPath = [
                 {
                     text: "Right",
                     nextText: 5
-                }]),
+                }], false),
 
     new storyNode(5,
         "Nordir headed right, past the meadow. He walked for a couple hours before spotting a villiage in the " +
@@ -100,7 +146,7 @@ const storyPath = [
         [{
             text: "Go to Pub",
             nextText: 11
-        }]),
+        }], false),
 
         new storyNode(6,
             "Nordir wanders to the left into the Forrest of Ferrar, he only travels 500 paces before he encounters a " +
@@ -114,7 +160,7 @@ const storyPath = [
                     text: "Talk",
                     nextText: 7
                 }
-            ]),
+            ], false),
 
     new storyNode(7,
         "Nordir: \"I mean no trouble, I'm travelling to a village outside Elroy called Hampt, " +
@@ -125,7 +171,7 @@ const storyPath = [
         [{
         text: "Go to Pub",
         nextText: 11
-    }]),
+    }], false),
 
     new storyNode(8,
         "Nordir: \"Shut up and fight you ugly beast!\"",
@@ -136,7 +182,7 @@ const storyPath = [
             }, {
                  text: "Win",
                  nextText: 10
-    }]),
+    }], false),
 
     new storyNode(9,
         "Nordir has DIED, perhaps better choices won't seal your fate next time....",
@@ -146,18 +192,18 @@ const storyPath = [
                 nextText: -1
             }
 
-        ]),
-    new storyNode(10,
+        ], false),
+        new weaponNode(randomFromArray(weapons), 10,
         "The Ogre takes his last breath and perishes. " +
-        "Nordir walks into the Ogre's dwelling to find a chest. Inside there is " + player.weapon + ". " +
-        "Nordir takes the weapon and carries on his way towards the village. Upon leaving the forrest, " +
+        "Nordir walks into the Ogre's dwelling to find a chest. Inside there is: " + weapons[weap].name +
+        " Nordir takes the weapon and carries on his way towards the village. Upon leaving the forrest, " +
         "Nordir spots a village in the distance, Hampt! Tired and ready for a rest he heads towards the humble village of Hampt.",
         [
             {
                 text: "Go to pub",
                 nextText: 11
             }
-        ]),
+        ], true),
     new storyNode(11,
         "Nordir reaches Hampt and enters a pub called the Eastman Seven. " +
         "The rowdy aroma filled Nordir with wimbsy, his first adventure! " +
@@ -172,7 +218,7 @@ const storyPath = [
                 text: "Engage with the man",
                 nextText: 13
             }
-        ]),
+        ], false),
     new storyNode(12,
         "Nordir ignores the stranger's advances. " +
         "Disturbed the stranger stands and freezes the roughhousing around Nordir. " +
@@ -189,7 +235,7 @@ const storyPath = [
                 text: "Apologize",
                 nextText: 15
             }
-        ]),
+        ], false),
 
     new storyNode(13,
         "Nordir: \"No, actually, I'm a stranger to this place.\" \nMysterious Stranger: \"Oh, what brings you to this pub then boy?\"",
@@ -202,7 +248,7 @@ const storyPath = [
                 text: "Tell the truth",
                 nextText: 17
             }
-        ]),
+        ], false),
 
     new storyNode(14,
         "Nordir: \"I came to find a wizard! Who knew I'd have to kill one too!\" ",
@@ -215,15 +261,15 @@ const storyPath = [
                 text: "Live",
                 nextText: 20
             }
-        ]),
+        ], false),
 
-    new storyNode(15,
-        "Nordir: \"Heimindon? My father sent me, Geralt of Elroy! I'm sorry, I do not regularly engage with strangers!\"" +
+    new weaponNode(randomFromArray(weapons), 15,
+        " Nordir: \"Heimindon? My father sent me, Geralt of Elroy! I'm sorry, I do not regularly engage with strangers!\"" +
         "\nHeirmindon: \"Geralt of Elroy?! He must have failed his quest then... I'm sorry for your loss boy...\"\n " +
         "Heirmindon reverses the curse on Nordir.\n Heimindon: \"You must be off to kill Aant' El...\" " +
-        "\nNordir: \"Yes I was told you could point me in the right direction. \nHeimindon: \"Yes of course, the journey is harrowing and dangerous.\" " +
-        "\nNordir: \"I'm ready.\" \nHeimindon:\"I see, you must travel to the Old Kingdom of York.\" \nNordir: \"The fallen castle?\" " +
-        "\nHeimindon: \"Yes, Aant' El dwells there, take this " + player.weapon + " it will help you on your journey. Good luck, boy.\"\n" +
+        "Nordir: \"Yes I was told you could point me in the right direction. Heimindon: \"Yes of course, the journey is harrowing and dangerous.\" " +
+        "Nordir: \"I'm ready.\" \nHeimindon:\"I see, you must travel to the Old Kingdom of York.\" \nNordir: \"The fallen castle?\" " +
+        "Heimindon: \"Yes, Aant' El dwells there, take this " + weapons[weap].name + " it will help you on your journey. Good luck, boy.\"\n" +
         " Nordir thanked Heimindon and walked out of the pub.",
         [
             {
@@ -234,7 +280,7 @@ const storyPath = [
                 text: "Begin Journey",
                 nextText: 19
             }
-        ]),
+        ], true),
 
     new storyNode(16,
         "Nordir: \"I come for strumpets, I must calm qualms rumbling beneath my waist.\" " +
@@ -248,16 +294,16 @@ const storyPath = [
                 text: "Admit to lying",
                 nextText: 31
             }
-        ]),
+        ], false),
 
-    new storyNode(17,
+    new weaponNode(randomFromArray(weapons), 17,
         "Nordir: \"I'm looking for a warlock called Heimindon the Fair, he is to guide me on a quest to slay Aant' El of Mont. " +
         "\nMysterious Stranger:\"Do not speak his name here boy! He has spies...\" \nNordir: \"You know of him?\" " +
         "\nMysterious Stranger: \"Yes boy, I am Heimindon the Fair, and you are?\" \nNordir: \"Nordir, Son of Geralt.\" " +
         "\nHeimindon: \"Geralt's son? He must have passed then... I'm sorry boy.\" " +
         "\nNordir: \"In death he sent me on his quest.\" \nHeimindon:\"Yes of course, the journey is harrowing and dangerous.\" " +
         "\nNordir: \"I'm ready.\" \nHeimindon:\"I see, you must travel to the Old Kingdom of York.\" \nNordir: \"The fallen castle?\" " +
-        "\nHeimindon: \"Yes, Aant' El dwells there, take this " + player.weapon + " it will help you on your journey. Good luck, boy.\" " +
+        "\nHeimindon: \"Yes, Aant' El dwells there, take this " + weapons[weap].name + " it will help you on your journey. Good luck, boy.\" " +
         "\nNordir thanked Heimindon and walked out of the pub.",
         [
             {
@@ -268,7 +314,7 @@ const storyPath = [
                 text: "Begin Journey",
                 nextText: 19
             }
-        ]),
+        ], true),
 
     new storyNode(18,
         "Nordir stays the night in the inn adjacent to the pub. " +
@@ -284,7 +330,7 @@ const storyPath = [
                 text: "Flee",
                 nextText: 33
             }
-        ]),
+        ], false),
 
     new storyNode(19,
         "Nordir begins his journey at once and heads down the lane towards York. " +
@@ -300,11 +346,11 @@ const storyPath = [
                 text: "Talk to the demonbeast",
                 nextText: 22
             }
-        ]),
+        ], false),
 
-    new storyNode(20,
+    new weaponNode(randomFromArray(weapons), 20,
         "Nordir strikes down Heimindon with a final blow, upon his death, all of his spells reverse. " +
-        "The pub breathes back to life. Nordir searches Heimindon's body and takes a " + player.weapon +" out of his Endless Satchel. " +
+        "The pub breathes back to life. Nordir searches Heimindon's body and takes a " + weapons[weap].name +" out of his Endless Satchel. " +
         "In his bag, he also had a diary that told of Aant' El and the Montcore dwelling in the Old Kingdom of York. " +
         "Blood thirsty, Nordir set out at once ready to slay Aant' El of Mont. Along his journey, he meets the soul of a demonbeast. " +
         "The demonbeast is a cunning breed happy to outsmart its prey before serving them for dinner. " +
@@ -318,7 +364,7 @@ const storyPath = [
                 text: "Talk to the demonbeast",
                 nextText: 22
             }
-        ]),
+        ], true),
     new storyNode(21,
         "Nordir: \"I haven't have time for riddles Fuklar, and you haven't much time to live left.\"",
         [
@@ -330,7 +376,7 @@ const storyPath = [
                 text: "Live",
                 nextText: 23
             }
-        ]),
+        ], false),
 
     new storyNode(22,
         "Nordir: \"I haven't much time for this beast, but I know your riddling ways. " +
@@ -345,7 +391,7 @@ const storyPath = [
                 text: "A well near a brook",
                 nextText: 25
             }
-        ]),
+        ], false),
 
     new storyNode(23,
         "Nordir slays the Demonbeast. As the soul withers, Nordir absorbs Fuklar's power and gains " + player.weapon + ". " +
@@ -356,7 +402,7 @@ const storyPath = [
                 text: "Let's go",
                 nextText: 39
             }
-        ]),
+        ], false),
 
     new storyNode(24,
         "Fuklar: \"You are correcT manBeaSt, BuT you are not done yeT.\" " +
@@ -372,7 +418,7 @@ const storyPath = [
                 text: "A fire",
                 nextText: 26
             }
-        ]),
+        ], false),
 
     new storyNode(25,
         "Fuklar: \"You have lost man beast! Die as you are!\" " +
@@ -383,7 +429,7 @@ const storyPath = [
                 text: "Restart",
                 nextText: -1
             }
-        ]),
+        ], false),
 
     new storyNode(26,
         "Fuklar: \"Ayee you are correct again.... One final test manBeast.\" " +
@@ -399,7 +445,7 @@ const storyPath = [
                 text: "A pen",
                 nextText: 28
             }
-        ]),
+        ], false),
 
     new storyNode(27,
         "Fuklar: \"You have lost man beast! Die as you are!\" " +
@@ -409,7 +455,7 @@ const storyPath = [
                 text: "Restart",
                 nextText: -1
             }
-        ]),
+        ], false),
 
     new storyNode(28,
         "Fuklar: \"Aye, you are a cunning warrior and a keen mind, you shall pass, Nordir of Elroy." +
@@ -421,7 +467,7 @@ const storyPath = [
                 text: "Let's go",
                 nextText: 39
             }
-        ]),
+        ], false),
 
     new storyNode(29,
         "Fuklar: \"You have lost man beast! Die as you are!\" " +
@@ -448,7 +494,7 @@ const storyPath = [
                 text: "Let's talk",
                 nextText: 36
             }
-        ]),
+        ], false),
 
     new storyNode(31, "Nordir: \"Oh I'm afraid I interjected that in jest, I'm looking for a warlock called Heimindon the Fair, he is to guide me on a quest to slay Aant' El of Mont.\"\n Mysterious Stranger:"+
         "\" Do not speak his name here boy! He has spies...\"\n Nordir: \"You know of him?\"\n Mysterious Stranger: \"Yes boy, I am Heimindon the Fair, and you are?\"\n Nordir: \"Nordir, Son of Geralt.\"\n Heimindon:"+ 
@@ -464,7 +510,7 @@ const storyPath = [
                 text: "Begin journey",
                 nextText: 19
             }
-        ]),
+        ], false),
 
     new storyNode(32,
         "Nordir: \"Hello uglies, I'm here to free your head from your disgusting body.\" ",
@@ -477,7 +523,7 @@ const storyPath = [
                 text: "Live",
                 nextText: 34
             }
-        ]),
+        ], false),
 
     new storyNode(33,
         "Nordir jumps out of his skin and runs back to his dwelling in Elroy. " +
@@ -488,7 +534,7 @@ const storyPath = [
                 text: "restart",
                 nextText: -1
             }
-        ]),
+        ], false),
 
     new storyNode(34,
         "Nordir slays the last of the guards. In one of the guard's bags there is a glowing elixer. " +
@@ -499,7 +545,7 @@ const storyPath = [
                 text: "The castle",
                 nextText: 39
             }
-        ]),
+        ], false),
 
     new storyNode(35,
         "Nordir: \"I'll have it all beautiful.\"\n\n Rose takes a small knife from her spruce undergarmet " +
@@ -513,7 +559,7 @@ const storyPath = [
                 text: "Restart",
                 nextText: -1
             }
-        ]),
+        ], false),
 
     new storyNode(36,
         "Nordir: \"I'm very happy your here, but I shant loose my chivalry with a lady of the night." +
@@ -528,7 +574,7 @@ const storyPath = [
                 text: "Just a little",
                 nextText: 38
             }
-        ]),
+        ], false),
 
     new storyNode(37,
         "Nordir: \"I'll have it all beautiful.\"\n\n Rose takes a small knife from her spruce undergarmet " +
@@ -542,7 +588,7 @@ const storyPath = [
                 text: "Restart",
                 nextText: -1
             }
-        ]),
+        ], false),
 
     new storyNode(38,
         "Nordir: \"Perhaps we shall refrain from having too much fun my quest requires a night's rest, maybe just " +
@@ -557,7 +603,7 @@ const storyPath = [
                 text: "Restart",
                 nextText: -1
             }
-        ]),
+        ], false),
 
     new storyNode(39,
         "Nordir looks around the grungy castle. The ground reeks of deadmeat and the walls speaks of abuse. " +
@@ -574,7 +620,7 @@ const storyPath = [
                 text: "Left",
                 nextText: 41
             }
-        ]),
+        ], false),
 
     new storyNode(40,
         "Nordir walks down the right hallway and encounters two large doors. " +
@@ -589,7 +635,7 @@ const storyPath = [
                 text: "Sneak in",
                 nextText: 47
             }
-        ]),
+        ], false),
 
     new storyNode(41,
         "Nordir walks down the left hallway and encounters Aant' El laying in a pile of corpses. " +
@@ -608,7 +654,7 @@ const storyPath = [
                 text: "Doubt him",
                 nextText: 43
             }
-        ]),
+        ], false),
 
     new storyNode(42,
         "Nordir: \"I will fight with you against this greater threat. What shall be our first move?\" " +
@@ -623,7 +669,7 @@ const storyPath = [
                 text: "Restart",
                 nextText: -1
             }
-        ]),
+        ], false),
 
     new storyNode(43,
         "Nordir: \"I trust not in your idle game as much as I fail to trust in your ghostly figure Aant' El.\" " +
@@ -640,7 +686,7 @@ const storyPath = [
                 text: "Sacrifice your soul",
                 nextText: 45
             }
-        ]),
+        ], false),
 
     new storyNode(44,
         "Nordir: \"I'll crack thy head open like a damn melon of water.\"",
@@ -653,7 +699,7 @@ const storyPath = [
                 text: "die",
                 nextText: 9
             }
-        ]),
+        ], false),
 
     new storyNode(45,
         "Nordir: If only my soul you're are after, I am happy to oblige. " +
@@ -665,7 +711,7 @@ const storyPath = [
                 text: "Restart",
                 nextText: -1
             }
-        ]),
+        ], false),
 
     new storyNode(46,
         "Nordir slams open the door with his boot. Aant' El of Mont sits on a throne of corpses. " +
@@ -684,7 +730,7 @@ const storyPath = [
                 text: "die",
                 nextText: 9
             }
-        ]),
+        ], false),
 
     new storyNode(47,
         "Using a small air duct, Nordir jumps up onto a ledge and shimmies onto a platform before crouching under an airduct. " +
@@ -702,7 +748,7 @@ const storyPath = [
                 text: "Fight him",
                 nextText: 48
             }
-        ]),
+        ], false),
 
     new storyNode(48,
         "Nordir: \"I very much like my soul thanks, time to die, ugly.\"",
@@ -715,7 +761,7 @@ const storyPath = [
                 text: "die",
                 nextText: 9
             }
-        ]),
+        ], false),
 
     new storyNode(49,
         "Nordir: \"I grow tired of this quest, take my soul and let me go on my way.\"\n " +
@@ -725,7 +771,7 @@ const storyPath = [
                 text: "Restart",
                 nextText: -1
             }
-        ]),
+        ], false),
 
     new storyNode(98,
         "Nordir makes a quick move and stabs Aant' El through the heart. \nNordir: \"You are done Aant' El,"+
@@ -741,7 +787,7 @@ const storyPath = [
                 text: "Restart",
                 nextText: -1
             }
-        ]),
+        ], false)
     ]
 
 startGame();
