@@ -1,3 +1,42 @@
+var clrvis = false;
+document.getElementById('beast').addEventListener('click', function() {
+    document.getElementById('bes').innerHTML = "Name - Type - Max Health - Danger Level<br>" +
+    "Ogre - Tank/Troll - 400 - Low <br> Fuklar - DemonBeast - 500 - Moderate <br> Montcore Guards "+
+    "- Montcore - 800 - Moderate <br> Aant' El of Mont - Montcore - 1300 - Very High";
+    if (clrvis == false){
+    var butt = document.createElement("BUTTON");
+    butt.innerHTML = "Clear";
+    butt.setAttribute("id", "clr");
+    document.getElementById("info").appendChild(butt);
+     clrvis = true;
+    }
+    document.getElementById("clr").addEventListener('click', function() {
+        document.getElementById('bes').innerHTML = " ";
+        butt.remove();
+        clrvis = false;
+}, false);
+}, false);
+document.getElementById('weap').addEventListener('click', function() {
+    document.getElementById('wep').innerHTML = "Name  -   Type  -   Max Damage  -  Critical Chance<br>" +
+    "Hollow Blade - Sword - 0 - 0<br>Sword of Thundership - Sword - 10 - 33<br>Excalibur - Sword - 40 - 80<br>" +
+    "Sword of Hellfire - Sword - 50 - 50<br>Fury Blade - Sword - 20 - 90<br>Blade of Erroneous Fate - Sword - 35 - 40<br>" +
+    "Axe of the Devil Cometh - Axe - 70 - 90<br>Axe of Ragnarok - Axe - 40 - 80<br>Blade of Legion - Sword - 50 - 70<br>Durendal - Sword - 100 - 100";
+    if (clrvis == false){
+    var butt = document.createElement("BUTTON");
+    butt.innerHTML = "Clear";
+    butt.setAttribute("id", "clr");
+    document.getElementById("info").appendChild(butt);
+    clrvis = true;
+    }
+    document.getElementById("clr").addEventListener('click', function() {
+            document.getElementById('wep').innerHTML = " ";
+            butt.remove();
+            clrvis = false;
+        
+        }, false);
+        
+}, false);
+
 const textElement = document.getElementById("disp");
 const optionButtons = document.getElementById('choices');
 let state = {};
@@ -7,12 +46,12 @@ let player = new character("Jim", "Player", playerPersonality, null);
 const weapons = [
                  new weapon("Hollow Blade", "Sword", 0, 0, false),
                  new weapon("Excalibur", "Sword", 40, 80, true),
-                 new weapon("Sword1", "Sword", 40, 80, true),
-                 new weapon("Sword2", "Sword", 40, 80, true),
-                 new weapon("Sword3", "Sword", 40, 80, true),
-                 new weapon("Sword4", "Sword", 40, 80, true),
-                 new weapon("Sword5", "Sword", 40, 80, true),
-                 new weapon("Sword6", "Sword", 40, 80, true),
+                 new weapon("Sword of Hellfire", "Sword", 50, 50, true),
+                 new weapon("Fury Blade", "Sword", 20, 90, true),
+                 new weapon("Blade of Erroneous Fate", "Sword", 35, 40, true),
+                 new weapon("Axe of the Devil Cometh", "Axe", 70, 90, true),
+                 new weapon("Axe of Ragnarok", "Axe", 40, 80, true),
+                 new weapon("Blade of Legion", "Sword", 50, 70, true),
                  new weapon("Durendal", "Sword", 100, 100, true),
                 ];
 
@@ -34,12 +73,12 @@ function changeWeapon(oldWeapon, newWeapon) {
         player.weapon = oldWeapon
     }
 
-    console.log(textElement.innerText.indexOf("You swapped to"));
-    if (textElement.innerText.indexOf("You swapped to") !== -1) {
-        textElement.innerText = textElement.innerText.slice(0, textElement.innerText.indexOf("You swapped to"));
+    console.log(textElement.innerText.indexOf("Nordir swapped to the"));
+    if (textElement.innerText.indexOf("Nordir swapped to the") !== -1) {
+        textElement.innerText = textElement.innerText.slice(0, textElement.innerText.indexOf("Nordir swapped to the"));
     }
 
-    textElement.innerText += " You swapped to " + player.weapon.name;
+    textElement.innerText += " Nordir swapped to the " + player.weapon.name;
     console.log(player.weapon);
 }
 
@@ -267,9 +306,9 @@ const storyPath = [
         " Nordir: \"Heimindon? My father sent me, Geralt of Elroy! I'm sorry, I do not regularly engage with strangers!\"" +
         "\nHeirmindon: \"Geralt of Elroy?! He must have failed his quest then... I'm sorry for your loss boy...\"\n " +
         "Heirmindon reverses the curse on Nordir.\n Heimindon: \"You must be off to kill Aant' El...\" " +
-        "Nordir: \"Yes I was told you could point me in the right direction. Heimindon: \"Yes of course, the journey is harrowing and dangerous.\" " +
-        "Nordir: \"I'm ready.\" \nHeimindon:\"I see, you must travel to the Old Kingdom of York.\" \nNordir: \"The fallen castle?\" " +
-        "Heimindon: \"Yes, Aant' El dwells there, take this " + weapons[weap].name + " it will help you on your journey. Good luck, boy.\"\n" +
+        "\nNordir: \"Yes I was told you could point me in the right direction.\n Heimindon: \"Yes of course, the journey is harrowing and dangerous.\" " +
+        "\nNordir: \"I'm ready.\" \nHeimindon:\"I see, you must travel to the Old Kingdom of York.\" \nNordir: \"The fallen castle?\" " +
+        "\nHeimindon: \"Yes, Aant' El dwells there, take this " + weapons[weap].name + " it will help you on your journey. Good luck, boy.\"\n" +
         " Nordir thanked Heimindon and walked out of the pub.",
         [
             {
@@ -394,7 +433,7 @@ const storyPath = [
         ], false),
 
     new storyNode(23,
-        "Nordir slays the Demonbeast. As the soul withers, Nordir absorbs Fuklar's power and gains " + player.weapon + ". " +
+        "Nordir slays the Demonbeast. As the soul withers, Nordir absorbs Fuklar's power and gains " + weapons[weap].name + ". " +
         "Nordir continues on the path and reaches the gates of York. The land is shrowded in darkness and distruction. \"No guards?\" " +
         "Nordir thinks to himself. He opens the gates and heads in. The final battle is upon him.",
         [
@@ -499,7 +538,7 @@ const storyPath = [
     new storyNode(31, "Nordir: \"Oh I'm afraid I interjected that in jest, I'm looking for a warlock called Heimindon the Fair, he is to guide me on a quest to slay Aant' El of Mont.\"\n Mysterious Stranger:"+
         "\" Do not speak his name here boy! He has spies...\"\n Nordir: \"You know of him?\"\n Mysterious Stranger: \"Yes boy, I am Heimindon the Fair, and you are?\"\n Nordir: \"Nordir, Son of Geralt.\"\n Heimindon:"+ 
         "\"Geralt's son? He must have passed then... I'm sorry boy.\"\n Nordir: \"In death he sent me on his quest.\"\n Heimindon:\"Yes of course, the journey is harrowing and dangerous.\"\n Nordir: \"I'm ready.\"\n" +
-        " Heimindon:\"I see, you must travel to the Old Kingdom of York.\"\n Nordir: \"The fallen castle?\"\n Heimindon: \"Yes, Aant' El dwells there, take this "+ player.weapon + " it will help you on your journey. Good luck, boy.\"\n"+
+        " Heimindon:\"I see, you must travel to the Old Kingdom of York.\"\n Nordir: \"The fallen castle?\"\n Heimindon: \"Yes, Aant' El dwells there, take this "+ weapons[weap].name + " it will help you on your journey. Good luck, boy.\"\n"+
         "Nordir thanked Heimindon and walked out of the pub.",
         [
             {
@@ -538,7 +577,7 @@ const storyPath = [
 
     new storyNode(34,
         "Nordir slays the last of the guards. In one of the guard's bags there is a glowing elixer. " +
-        "Nordir drinks the potion and is granted " + player.weapon + ". " +
+        "Nordir drinks the potion and is granted " + weapons[weap].name + ". " +
         "Nordir opens the castle doors and enters. He's ready to face his final trial.",
         [
             {
