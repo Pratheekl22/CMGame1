@@ -54,7 +54,7 @@ let player = new character("Nordir", "Player", playerPersonality,
     },{
     text: "Brutality"
     }],200);
-
+//hi
 let ogre = new character("Ogre", "Monster", null,
     new weapon("Mace of Macedom", "Mace", 30, 0, false),
     [{
