@@ -20,7 +20,7 @@ document.getElementById('weap').addEventListener('click', function() {
     document.getElementById('wep').innerHTML = "Name  -   Type  -   Max Damage  -  Critical Chance<br>" +
     "Hollow Blade - Sword - 0 - 0<br>Sword of Thundership - Sword - 10 - 33<br>Excalibur - Sword - 40 - 80<br>" +
     "Sword of Hellfire - Sword - 50 - 50<br>Fury Blade - Sword - 20 - 90<br>Blade of Erroneous Fate - Sword - 35 - 40<br>" +
-    "Axe of the Devil Cometh - Axe - 70 - 90<br>Axe of Ragnarok - Axe - 40 - 80<br>Blade of Legion - Sword - 50 - 70<br>Durendal - Sword - 100 - 100";
+    "Stormforged Devil Cometh - Axe - 70 - 90<br>Thunderhammer of Ragnarok - Axe - 40 - 80<br>Blade of Legion - Sword - 50 - 70<br>Durendal - Sword - 100 - 100";
     if (clrvis == false){
     var butt = document.createElement("BUTTON");
     butt.innerHTML = "Clear";
@@ -49,8 +49,8 @@ const weapons = [
                  new weapon("Sword of Hellfire", "Sword", 50, 50, true),
                  new weapon("Fury Blade", "Sword", 20, 90, true),
                  new weapon("Blade of Erroneous Fate", "Sword", 35, 40, true),
-                 new weapon("Axe of the Devil Cometh", "Axe", 70, 90, true),
-                 new weapon("Axe of Ragnarok", "Axe", 40, 80, true),
+                 new weapon("Stormforged Devil Cometh", "Axe", 70, 90, true),
+                 new weapon("Thunderhammer of Ragnarok", "Axe", 40, 80, true),
                  new weapon("Blade of Legion", "Sword", 50, 70, true),
                  new weapon("Durendal", "Sword", 100, 100, true),
                 ];
@@ -138,7 +138,7 @@ const storyPath = [
         new storyNode(2,
             "Dearest Nordir,\n If you're reading this I am dead. In death, I leave you the Sword of Thundership " +
             "forged from the flames of Mount Furst, use it wisely. I haven't much time so I must tell you this, I am dead because of " +
-            "an erronous breed called the Montcore, ruled by Aant' El of Mont. They threaten the saftey of our realm. We are the last desendants of "+
+            "an erroneous breed called the Montcore, ruled by Aant' El of Mont. They threaten the saftey of our realm. We are the last desendants of "+
             "the Thunder Breed so you are the sole defense against the Montcore. Aant' El desires your soul so that he can use the Thunder Breed's power for domination. I failed in my mission " +
             "to stop him, you must finish the job. Travel across Elroy to the town of Hampt, there you will find the warlock Heimindon the Fair, he will help you. " +
             "I must leave you now, rememeber in my death I will always be with you.\n\n I love you very much my son,\n\t Geralt of Elroy\n\n" +
@@ -162,12 +162,12 @@ const storyPath = [
             }
         ]
     },
-        new storyNode(3,
-            "Nordir forges a meer Hollow Blade. Nordir never was a great blacksmith",
+        new weaponNode(0, 3,
+            "Nordir forges a meer Hollow Blade. Nordir never was a great blacksmith.",
             [{
                 text: "Continue",
                 nextText: 4
-            }], false),
+            }], true),
         new storyNode(4,
             "\"Which way should I go?\" Nordir thinks to himeslf.",
             [{
@@ -234,9 +234,9 @@ const storyPath = [
         ], false),
         new weaponNode(randomFromArray(weapons), 10,
         "The Ogre takes his last breath and perishes. " +
-        "Nordir walks into the Ogre's dwelling to find a chest. Inside there is: " + weapons[weap].name +
+        "Nordir walks into the Ogre's dwelling to find a chest. Inside there is a " + weapons[weap].name +
         " Nordir takes the weapon and carries on his way towards the village. Upon leaving the forrest, " +
-        "Nordir spots a village in the distance, Hampt! Tired and ready for a rest he heads towards the humble village of Hampt.",
+        "Nordir spots a village in the distance, Hampt! Tired and ready for a rest, he heads towards the humble village of Hampt.",
         [
             {
                 text: "Go to pub",
@@ -432,8 +432,8 @@ const storyPath = [
             }
         ], false),
 
-    new storyNode(23,
-        "Nordir slays the Demonbeast. As the soul withers, Nordir absorbs Fuklar's power and gains " + weapons[weap].name + ". " +
+       new weaponNode(randomFromArray(weapons), 23,
+        "Nordir slays the Demonbeast. As the soul withers, Nordir absorbs Fuklar's power and gains a " + weapons[weap].name + ". " +
         "Nordir continues on the path and reaches the gates of York. The land is shrowded in darkness and distruction. \"No guards?\" " +
         "Nordir thinks to himself. He opens the gates and heads in. The final battle is upon him.",
         [
@@ -441,7 +441,7 @@ const storyPath = [
                 text: "Let's go",
                 nextText: 39
             }
-        ], false),
+        ], true),
 
     new storyNode(24,
         "Fuklar: \"You are correcT manBeaSt, BuT you are not done yeT.\" " +
@@ -535,7 +535,8 @@ const storyPath = [
             }
         ], false),
 
-    new storyNode(31, "Nordir: \"Oh I'm afraid I interjected that in jest, I'm looking for a warlock called Heimindon the Fair, he is to guide me on a quest to slay Aant' El of Mont.\"\n Mysterious Stranger:"+
+        new weaponNode(randomFromArray(weapons), 31, 
+        "Nordir: \"Oh I'm afraid I interjected that in jest, I'm looking for a warlock called Heimindon the Fair, he is to guide me on a quest to slay Aant' El of Mont.\"\n Mysterious Stranger:"+
         "\" Do not speak his name here boy! He has spies...\"\n Nordir: \"You know of him?\"\n Mysterious Stranger: \"Yes boy, I am Heimindon the Fair, and you are?\"\n Nordir: \"Nordir, Son of Geralt.\"\n Heimindon:"+ 
         "\"Geralt's son? He must have passed then... I'm sorry boy.\"\n Nordir: \"In death he sent me on his quest.\"\n Heimindon:\"Yes of course, the journey is harrowing and dangerous.\"\n Nordir: \"I'm ready.\"\n" +
         " Heimindon:\"I see, you must travel to the Old Kingdom of York.\"\n Nordir: \"The fallen castle?\"\n Heimindon: \"Yes, Aant' El dwells there, take this "+ weapons[weap].name + " it will help you on your journey. Good luck, boy.\"\n"+
@@ -549,7 +550,7 @@ const storyPath = [
                 text: "Begin journey",
                 nextText: 19
             }
-        ], false),
+        ], true),
 
     new storyNode(32,
         "Nordir: \"Hello uglies, I'm here to free your head from your disgusting body.\" ",
@@ -575,16 +576,16 @@ const storyPath = [
             }
         ], false),
 
-    new storyNode(34,
+        new weaponNode(randomFromArray(weapons), 34,
         "Nordir slays the last of the guards. In one of the guard's bags there is a glowing elixer. " +
-        "Nordir drinks the potion and is granted " + weapons[weap].name + ". " +
+        "Nordir drinks the potion and is granted a " + weapons[weap].name + ". " +
         "Nordir opens the castle doors and enters. He's ready to face his final trial.",
         [
             {
                 text: "The castle",
                 nextText: 39
             }
-        ], false),
+        ], true),
 
     new storyNode(35,
         "Nordir: \"I'll have it all beautiful.\"\n\n Rose takes a small knife from her spruce undergarmet " +
