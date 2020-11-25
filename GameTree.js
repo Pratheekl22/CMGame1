@@ -1,4 +1,4 @@
-var clrvis = false;
+/*var clrvis = false;
 document.getElementById('beast').addEventListener('click', function() {
     document.getElementById('bes').innerHTML = "Name - Type - Max Health - Danger Level<br>" +
     "Ogre - Tank/Troll - 400 - Low <br> Fuklar - DemonBeast - 500 - Moderate <br> Montcore Guards "+
@@ -14,16 +14,16 @@ document.getElementById('beast').addEventListener('click', function() {
 }, false);
 document.getElementById('weap').addEventListener('click', function() {
     document.getElementById('wep').innerHTML = "Name  -   Type  -   Max Damage  -  Critical Chance<br>" +
-    if (clrvis == false){
-    }
+    if (clrvis == false) {
+    
     document.getElementById("clr").addEventListener('click', function() {
-}, false);
+}, false);*/
 
 const textElement = document.getElementById("disp");
 const optionButtons = document.getElementById('choices');
 let state = {};
 let playerPersonality = new personality("Good", 50, 50)
-let player = new character("Jim", "Player", playerPersonality, null);
+//let player = new character("Jim", "Player", playerPersonality, null);
 let player = new character("Nordir", "Player", playerPersonality,
     new weapon("Sword of Thundership", "Sword", 40, 40, false),
     [{
@@ -33,7 +33,7 @@ let player = new character("Nordir", "Player", playerPersonality,
     },{
     text: "Dodge",
     },{
-    text: "Run"
+    text: "Brutality"
     }],200);
 
 let ogre = new character("Ogre", "Monster", null,
@@ -155,12 +155,12 @@ function changeWeapon(oldWeapon, newWeapon) {
         player.weapon = oldWeapon
     }
 
-    console.log(textElement.innerText.indexOf("You swapped to"));
-    if (textElement.innerText.indexOf("You swapped to") !== -1) {
-        textElement.innerText = textElement.innerText.slice(0, textElement.innerText.indexOf("You swapped to"));
+    console.log(textElement.innerText.indexOf("Nordir swapped to the"));
+    if (textElement.innerText.indexOf("Nordir swapped to the") !== -1) {
+        textElement.innerText = textElement.innerText.slice(0, textElement.innerText.indexOf("Nordir swapped to the"));
     }
 
-    textElement.innerText += " You swapped to " + player.weapon.name;
+    textElement.innerText += " Nordir swapped to the " + player.weapon.name;
     console.log(player.weapon);
 }
 
@@ -169,46 +169,48 @@ function attackMove(attack, enemy, playerWin, enemyWin) {
     let dodge = false;
     console.log(dodgeCount)
     if (attack.text === "Strike") {
-        textElement.innerText += " \nYou launch a strike at the enemy";
+        textElement.innerText += " \nNordir launches a strike at the enemy";
 
         let damage = player.weapon.damage;
         let crit = Math.floor(Math.random() * 100);
         if (crit <= player.weapon.critChance) {
             damage *= 2;
-            textElement.innerText += " \nYour strike hits critically";
+            textElement.innerText += " \nNordir's strike hits critically";
         }
         enemy.health -= damage;
 
         textElement.innerText += " \nEnemy Health: " + enemy.health;
     } else if (attack.text === "Dodge") {
-        textElement.innerText += " \nYou execute a dodge";
+        textElement.innerText += " \nNordir executes a dodge";
         dodge = true;
         dodgeCount++;
 
         if (dodgeCount === 3 || dodgeCount === 4) {
-            textElement.innerText += " \nYour enemy begins to understand your attacks";
+            textElement.innerText += " \nThe enemy begins to understand your attacks";
         }
     } else {
-        textElement.innerText += " \nYou attempt to flee from the enemy";
+        textElement.innerText += " \nNordir attempts to flee from the enemy";
         let esc = Math.floor(Math.random() * 100);
         if (esc <= 20) {
-            textElement.innerText += " \nYour attempt is successful";
+            textElement.innerText += " \nNordir's attempt is successful";
             sleep(5000)
             dodgeCount = 0;
             return showText(playerWin);
         } else {
-            textElement.innerText += " \nYour attempt fails";
+            textElement.innerText += " \nNordir's attempt fails";
+            sleep(5000)
+            return showText(enemyWin);
         }
     }
 
     if (enemy.health <= 0) {
-        textElement.innerText += " \nYou have slain your enemy";
+        textElement.innerText += " \nNordir has slain the enemy";
         sleep(5000)
         dodgeCount = 0;
         return showText(playerWin);
     } else {
         if (dodgeCount === 5) {
-            textElement.innerText += " \nYour enemy predicts your move and strikes you with a mighty blow";
+            textElement.innerText += " \nThe enemy predicts your move and strikes you with a mighty blow";
             player.health = 0;
         }
         let enemyAttack = enemy.attacks[Math.floor(Math.random() * enemy.attacks.length)];
@@ -218,14 +220,14 @@ function attackMove(attack, enemy, playerWin, enemyWin) {
             let crit = Math.floor(Math.random() * 100);
             if (crit <= enemy.weapon.critChance) {
                 damage *= 2;
-                textElement.innerText += " \nYour enemy's strike hits critically";
+                textElement.innerText += " \nThe enemy's strike hits critically";
             }
             player.health -= damage;
         }
-        textElement.innerText += " \nYour Health: " + player.health;
+        textElement.innerText += " \nNordir's Health: " + player.health;
 
         if (player.health <= 0) {
-            textElement.innerText += " \nYou have been slain";
+            textElement.innerText += " \nNordir has been slain";
             sleep(5000)
             return showText(enemyWin);
         }
@@ -242,7 +244,7 @@ function sleep(milliseconds) {
 }
 
 function runCombat(currentNode) {
-    textElement.innerText += "\nYou face " + currentNode.enemy.name;
+    textElement.innerText += "\nNordir faces " + currentNode.enemy.name;
     currentNode.player.attacks.forEach(attack => {
         const button = document.createElement('button');
         button.innerText = attack.text;
