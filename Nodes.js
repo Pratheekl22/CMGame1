@@ -2,7 +2,6 @@ class storyNode {
     id;
     text;
     options;
-    weapon;
     foundWeapon;
 
     constructor(id, text, options, foundWeapon) {
