@@ -312,8 +312,12 @@ function runCombat(currentNode) {
 }
 
 function showText(textIndex) {
+    
     const currentNode = storyPath.find(storyNode => storyNode.id === textIndex)
     textElement.innerText = currentNode.text;
+    if (Number.isInteger(currentNode.trans)){
+        toTrans(currentNode.trans);
+    }
     var textL = document.getElementById("text-bar");
     textL.scrollTop = 0;
     while (optionButtons.firstChild) {
@@ -347,7 +351,20 @@ function showText(textIndex) {
         swapCheck = false;
     }
 }
+backgrounds = [
+    "elroy" , "house_interior" , "forest_day" , "forest_night",
+    "pub_interior", "room_inn", "throne_room", "york_i", "york_e"]
+function toTrans(index){
+    document.getElementById(backgrounds[index]).style.display = "block";
+    console.log(backgrounds[index]);
+    for (var i = 0; i < backgrounds.length; i++){
+        console.log(i)
+        if (i != index){
+            document.getElementById(backgrounds[i]).style.display = "none";
+        }
+    }
 
+}
 function showOption(option) {
     return true;
 }
@@ -366,7 +383,7 @@ const storyPath = [
         [{
             text: "Read letter",
             nextText: 2
-        }], false),
+        }], false, "N"),
     new storyNode(2,
         "Dearest Nordir,\n If you're reading this I am dead. In death, I leave you the Sword of Thundership " +
         "forged from the flames of Mount Furst, use it wisely. I haven't much time so I must tell you this, I am dead because of " +
@@ -383,7 +400,7 @@ const storyPath = [
             {
                 text: "Forge another weapon",
                 nextText: 3
-            }], false),
+            }], false, "N"),
     {
         id: 99,
         text: "Nordir has DIED, perhaps better choices won't seal your fate next time....",
@@ -409,7 +426,7 @@ const storyPath = [
             {
                 text: "Right",
                 nextText: 5
-            }], false),
+            }], false, 0),
 
     new storyNode(5,
         "Nordir headed right, past the meadow. He walked for a couple hours before spotting a villiage in the " +
@@ -417,7 +434,7 @@ const storyPath = [
         [{
             text: "Go to Pub",
             nextText: 11
-        }], false),
+        }], false, 2),
 
     new storyNode(6,
         "Nordir wanders to the left into the Forrest of Ferrar, he only travels 500 paces before he encounters a " +
@@ -431,7 +448,7 @@ const storyPath = [
                 text: "Talk",
                 nextText: 7
             }
-        ], false),
+        ], false, 2),
 
     new storyNode(7,
         "Nordir: \"I mean no trouble, I'm travelling to a village outside Elroy called Hampt, " +
@@ -489,7 +506,7 @@ const storyPath = [
                 text: "Engage with the man",
                 nextText: 13
             }
-        ], false),
+        ], false, 4),
     new storyNode(12,
         "Nordir ignores the stranger's advances. " +
         "Disturbed the stranger stands and freezes the roughhousing around Nordir. " +
@@ -601,7 +618,7 @@ const storyPath = [
                 text: "Flee",
                 nextText: 33
             }
-        ], false),
+        ], false, 7),
 
     new storyNode(19,
         "Nordir begins his journey at once and heads down the lane towards York. " +
@@ -617,7 +634,7 @@ const storyPath = [
                 text: "Talk to the demonbeast",
                 nextText: 22
             }
-        ], false),
+        ], false, 3),
 
     new weaponNode(randomFromArray(weapons), 20,
         "Nordir strikes down Heimindon with a final blow, upon his death, all of his spells reverse. " +
@@ -635,7 +652,7 @@ const storyPath = [
                 text: "Talk to the demonbeast",
                 nextText: 22
             }
-        ], true),
+        ], true, 3),
     new combatNode(21, player, demonbeast,
         "Nordir: \"I haven't have time for riddles Fuklar, and you haven't much time to live left.\"",
         [
@@ -673,7 +690,7 @@ const storyPath = [
                 text: "Let's Go",
                 nextText: 39
             }
-        ], true),
+        ], true, 8),
 
     new storyNode(24,
         "Fuklar: \"You are correcT manBeaST, BuT you are not done yeT.\" " +
@@ -738,7 +755,7 @@ const storyPath = [
                 text: "Let's go",
                 nextText: 39
             }
-        ], false),
+        ], false, 8),
 
     new storyNode(29,
         "Fuklar: \"You have lost man beast! Die as you are!\" " +
@@ -765,7 +782,7 @@ const storyPath = [
                 text: "Let's talk",
                 nextText: 36
             }
-        ], false),
+        ], false, 5),
 
     new weaponNode(randomFromArray(weapons), 31,
         "Nordir: \"Oh I'm afraid I interjected that in jest, I'm looking for a warlock called Heimindon the Fair, he is to guide me on a quest to slay Aant' El of Mont.\"\n Mysterious Stranger:"+
@@ -817,7 +834,7 @@ const storyPath = [
                 text: "Lets go!",
                 nextText: 39
             }
-        ], true),
+        ], true, ),
 
     new storyNode(35,
         "Nordir: \"I'll have it all beautiful.\" \nRose takes a small knife from her spruce undergarmet " +
@@ -892,7 +909,7 @@ const storyPath = [
                 text: "Left",
                 nextText: 41
             }
-        ], false),
+        ], false, 7),
 
     new storyNode(40,
         "Nordir walks down the right hallway and encounters large doors. " +
@@ -926,7 +943,7 @@ const storyPath = [
                 text: "Doubt",
                 nextText: 43
             }
-        ], false),
+        ], false, 6 ),
 
     new storyNode(42,
         "Nordir: \"I will fight with you against this greater threat. What shall be our first move?\" " +
@@ -1002,7 +1019,7 @@ const storyPath = [
                 text: "win",
                 nextText: 100
             }
-        ]),
+        ], 6),
 
     new storyNode(47,
         "Using a small air duct, Nordir jumps up onto a ledge and shimmies onto a platform before crouching under an airduct. " +
@@ -1020,7 +1037,7 @@ const storyPath = [
                 text: "Fight him",
                 nextText: 48
             }
-        ], false),
+        ], false, 6),
 
     new combatNode(48, player, boss,
         "Nordir: \"I very much like my soul thanks, why dont we work on sawing off that head of yours, now.\"",

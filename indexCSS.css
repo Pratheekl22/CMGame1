@@ -15,6 +15,7 @@ html {
     /* background: url("title-background.png") no-repeat center center fixed; */
     background-size: cover;
     background-repeat: repeat;
+    overflow: hidden;
 }
 body {
     height: 100%;
@@ -193,4 +194,34 @@ body {
 }
 #exchange {
     /* display: none; */
+}
+
+/* --------------- BACKGROUNDS ------------------ */
+
+#elroy{
+    display: none;
+}
+#forest_day{
+    display: none;
+}
+#forest_night{
+    display: none;
+}
+#house_interior{
+    display: show;
+}
+#pub_interior{
+    display: none;
+}
+#room_inn{
+    display: none;
+}
+#throne_room{
+    display: none;
+}
+#york_e{
+    display: none;
+}
+#york_i{
+    display: none;
 }
