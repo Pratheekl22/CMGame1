@@ -174,12 +174,14 @@ function changeWeapon(oldWeapon, newWeapon) {
         player.weapon = oldWeapon
     }
 
-    console.log(textElement.innerText.indexOf("Nordir swapped to the"));
-    if (textElement.innerText.indexOf("Nordir swapped to the") !== -1) {
-        textElement.innerText = textElement.innerText.slice(0, textElement.innerText.indexOf("Nordir swapped to the"));
+    console.log(textElement.innerText.indexOf("\nNordir swapped to the"));
+    if (textElement.innerText.indexOf("\nNordir swapped to the") !== -1) {
+        textElement.innerText = textElement.innerText.slice(0, textElement.innerText.indexOf("\nNordir swapped to the"));
     }
 
-    textElement.innerText += " Nordir swapped to the " + player.weapon.name;
+    textElement.innerText += " \nNordir swapped to the " + player.weapon.name;
+    var textL = document.getElementById("text-bar");
+    textL.scrollTop = textL.scrollHeight;
     console.log(player.weapon);
 }
 
@@ -189,39 +191,57 @@ function attackMove(attack, enemy, playerWin, enemyWin) {
     console.log(dodgeCount)
     if (attack.text === "Strike") {
         textElement.innerText += " \nNordir launches a strike at the enemy";
+        var textL = document.getElementById("text-bar");
+        textL.scrollTop = textL.scrollHeight;
 
         let damage = player.weapon.damage;
         let crit = Math.floor(Math.random() * 100);
         if (crit <= player.weapon.critChance) {
             damage *= 2;
             textElement.innerText += " \nNordir's strike hits critically";
+            var textL = document.getElementById("text-bar");
+            textL.scrollTop = textL.scrollHeight;
         }
         enemy.health -= damage;
 
         textElement.innerText += " \nEnemy Health: " + enemy.health;
+        var textL = document.getElementById("text-bar");
+        textL.scrollTop = textL.scrollHeight;
     } else if (attack.text === "Dodge") {
         textElement.innerText += " \nNordir executes a dodge";
+        var textL = document.getElementById("text-bar");
+        textL.scrollTop = textL.scrollHeight;
         dodge = true;
         dodgeCount++;
 
         if (dodgeCount === 3 || dodgeCount === 4) {
             if (dodgeCount === 3){
                 textElement.innerText += " \nThe enemy begins to understand your attacks";
+                var textL = document.getElementById("text-bar");
+                textL.scrollTop = textL.scrollHeight;
             } else if (dodgeCount === 4) {
                 textElement.innerText += " \nThe enemy is preparing to counter your attacks.";
+                var textL = document.getElementById("text-bar");
+                textL.scrollTop = textL.scrollHeight;
             }
         }
     } else {
         textElement.innerText += " \nNordir attempts to launch a brutal strike at the enemy";
+        var textL = document.getElementById("text-bar");
+        textL.scrollTop = textL.scrollHeight;
         let esc = Math.floor(Math.random() * 100);
         if (esc <= 20) {
             textElement.innerText += " \nNordir's attempt is successful";
+            var textL = document.getElementById("text-bar");
+            textL.scrollTop = textL.scrollHeight;
             sleep(5000)
             player.health = 250;
             dodgeCount = 0;
             return showText(playerWin);
         } else {
             textElement.innerText += " \nNordir's attempt fails";
+            var textL = document.getElementById("text-bar");
+            textL.scrollTop = textL.scrollHeight;
             sleep(5000)
             return showText(enemyWin);
         }
@@ -229,6 +249,8 @@ function attackMove(attack, enemy, playerWin, enemyWin) {
 
     if (enemy.health <= 0) {
         textElement.innerText += " \nNordir has slain the enemy";
+        var textL = document.getElementById("text-bar");
+        textL.scrollTop = textL.scrollHeight;
         sleep(5000)
         dodgeCount = 0;
         player.health = 250;
@@ -236,6 +258,8 @@ function attackMove(attack, enemy, playerWin, enemyWin) {
     } else {
         if (dodgeCount === 5) {
             textElement.innerText += " \nThe enemy predicts your move and strikes you with a mighty blow";
+            var textL = document.getElementById("text-bar");
+            textL.scrollTop = textL.scrollHeight;
             player.health = 0;
         }
         let enemyAttack = enemy.attacks[Math.floor(Math.random() * enemy.attacks.length)];
@@ -246,14 +270,20 @@ function attackMove(attack, enemy, playerWin, enemyWin) {
             if (crit <= enemy.weapon.critChance) {
                 damage *= 2;
                 textElement.innerText += " \nThe enemy's strike hits critically";
+                var textL = document.getElementById("text-bar");
+                textL.scrollTop = textL.scrollHeight;
             }
             player.health -= damage;
             console.log(enemyAttack);
         }
         textElement.innerText += " \nNordir's Health: " + player.health;
+        var textL = document.getElementById("text-bar");
+        textL.scrollTop = textL.scrollHeight;
 
         if (player.health <= 0) {
             textElement.innerText += " \nNordir has been slain";
+            var textL = document.getElementById("text-bar");
+            textL.scrollTop = textL.scrollHeight;
             sleep(5000)
             return showText(enemyWin);
         }
@@ -284,6 +314,8 @@ function runCombat(currentNode) {
 function showText(textIndex) {
     const currentNode = storyPath.find(storyNode => storyNode.id === textIndex)
     textElement.innerText = currentNode.text;
+    var textL = document.getElementById("text-bar");
+    textL.scrollTop = 0;
     while (optionButtons.firstChild) {
         optionButtons.removeChild(optionButtons.firstChild);
     }
@@ -389,7 +421,7 @@ const storyPath = [
 
     new storyNode(6,
         "Nordir wanders to the left into the Forrest of Ferrar, he only travels 500 paces before he encounters a " +
-        "repulsive Ogre. \nOgre: What be your buisness her' boy? ",
+        "repulsive Ogre. \nOgre: \"What be your buisness her' boy?\" ",
         [
             {
                 text: "Fight",
@@ -757,7 +789,7 @@ const storyPath = [
         [
             {
                 text: "Die",
-                nextText: -1
+                nextText: 9
             },
             {
                 text: "Live",
