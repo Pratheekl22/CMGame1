@@ -53,6 +53,8 @@ body {
     width: 100%;
 }
 
+/*-------------------- ANIMATIONS -------------------*/
+
 /*-------------------- DIALOG UI --------------------*/
 .dialog {
     /*display: none;*/
@@ -61,11 +63,11 @@ body {
 }
 .bars {
     /* display: none; */
-    width: 80%;
+    width: 76%;
     margin-left: 10%;
     margin-right: 10%;
-    height: 35%;
-    bottom: 5%;
+    height: 31%;
+    bottom: 6%;
     position: absolute;
 }
 #dialog-bar {
