@@ -1,44 +1,44 @@
-var clrvis = false;
-document.getElementById('beast').addEventListener('click', function() {
-    document.getElementById('bes').innerHTML = "Name - Type - Max Health - Danger Level<br>" +
-    "Ogre - Tank/Troll - 400 - Low <br> Fuklar - DemonBeast - 500 - Moderate <br> Montcore Guards "+
-    "- Montcore - 800 - Moderate <br> Aant' El of Mont - Montcore - 1300 - Very High";
-        "Ogre - Tank/Troll - 400 - Low <br> Fuklar - DemonBeast - 500 - Moderate <br> Montcore Guards "+
-        "- Montcore - 800 - Moderate <br> Aant' El of Mont - Montcore - 1300 - Very High";
-    if (clrvis == false){
-        var butt = document.createElement("BUTTON");
-        butt.innerHTML = "Clear";
-        butt.setAttribute("id", "clr");
-        document.getElementById("info").appendChild(butt);
-         clrvis = true;
-    }
-    document.getElementById("clr").addEventListener('click', function() {
-        document.getElementById('bes').innerHTML = " ";
-        butt.remove();
-        clrvis = false;
-}, false);
-}, false);
-document.getElementById('weap').addEventListener('click', function() {
-    document.getElementById('wep').innerHTML = "Name  -   Type  -   Max Damage  -  Critical Chance<br>" +
-    "Hollow Blade - Sword - 0 - 0<br>Sword of Thundership - Sword - 10 - 33<br>Excalibur - Sword - 40 - 80<br>" +
-    "Sword of Hellfire - Sword - 50 - 60<br>Fury Blade - Sword - 40 - 70<br>Blade of Erroneous Fate - Sword - 90 - 10<br>" +
-    "Stormforged Devil Cometh - Axe - 150 - 15<br>Thunderhammer of Ragnarok - Axe - 100 - 20<br>Blade of Legion - Sword - 40 - 40<br>Durendal - Sword - 100 - 100" +
-    "<br>Steady Blade - Sword - 50 - 50 <br> Warhammer of Might - Axe - 80 - 40 <br> Blade of Godsfate - Sword - 10 - 100";
-    if (clrvis == false){
-        var butt = document.createElement("BUTTON");
-        butt.innerHTML = "Clear";
-        butt.setAttribute("id", "clr");
-        document.getElementById("info").appendChild(butt);
-         clrvis = true;
-    }
-    document.getElementById("clr").addEventListener('click', function() {
-        document.getElementById('wep').innerHTML = " ";
-        butt.remove();
-        clrvis = false;
-    }, false);
-}, false);
+// var clrvis = false;
+// document.getElementById('beast').addEventListener('click', function() {
+//     document.getElementById('bes').innerHTML = "Name - Type - Max Health - Danger Level<br>" +
+//     "Ogre - Tank/Troll - 400 - Low <br> Fuklar - DemonBeast - 500 - Moderate <br> Montcore Guards "+
+//     "- Montcore - 800 - Moderate <br> Aant' El of Mont - Montcore - 1300 - Very High";
+//         "Ogre - Tank/Troll - 400 - Low <br> Fuklar - DemonBeast - 500 - Moderate <br> Montcore Guards "+
+//         "- Montcore - 800 - Moderate <br> Aant' El of Mont - Montcore - 1300 - Very High";
+//     if (clrvis == false){
+//         var butt = document.createElement("BUTTON");
+//         butt.innerHTML = "Clear";
+//         butt.setAttribute("id", "clr");
+//         document.getElementById("info").appendChild(butt);
+//          clrvis = true;
+//     }
+//     document.getElementById("clr").addEventListener('click', function() {
+//         document.getElementById('bes').innerHTML = " ";
+//         butt.remove();
+//         clrvis = false;
+// }, false);
+// }, false);
+// document.getElementById('weap').addEventListener('click', function() {
+//     document.getElementById('wep').innerHTML = "Name  -   Type  -   Max Damage  -  Critical Chance<br>" +
+//     "Hollow Blade - Sword - 0 - 0<br>Sword of Thundership - Sword - 10 - 33<br>Excalibur - Sword - 40 - 80<br>" +
+//     "Sword of Hellfire - Sword - 50 - 60<br>Fury Blade - Sword - 40 - 70<br>Blade of Erroneous Fate - Sword - 90 - 10<br>" +
+//     "Stormforged Devil Cometh - Axe - 150 - 15<br>Thunderhammer of Ragnarok - Axe - 100 - 20<br>Blade of Legion - Sword - 40 - 40<br>Durendal - Sword - 100 - 100" +
+//     "<br>Steady Blade - Sword - 50 - 50 <br> Warhammer of Might - Axe - 80 - 40 <br> Blade of Godsfate - Sword - 10 - 100";
+//     if (clrvis == false){
+//         var butt = document.createElement("BUTTON");
+//         butt.innerHTML = "Clear";
+//         butt.setAttribute("id", "clr");
+//         document.getElementById("info").appendChild(butt);
+//          clrvis = true;
+//     }
+//     document.getElementById("clr").addEventListener('click', function() {
+//         document.getElementById('wep').innerHTML = " ";
+//         butt.remove();
+//         clrvis = false;
+//     }, false);
+// }, false);
 
-const textElement = document.getElementById("disp");
+const textElement = document.getElementById("text-bar");
 const optionButtons = document.getElementById('choices');
 let state = {};
 let playerPersonality = new personality("Good", 50, 50)
@@ -46,13 +46,13 @@ let playerPersonality = new personality("Good", 50, 50)
 let player = new character("Nordir", "Player", playerPersonality,
     new weapon("Sword of Thundership", "Sword", 40, 40, false),
     [{
-    text: "Strike",
-    damage: 40,
-    crit: 40
+        text: "Strike",
+        damage: 40,
+        crit: 40
     },{
-    text: "Dodge",
+        text: "Dodge",
     },{
-    text: "Brutality"
+        text: "Brutality"
     }],200);
 
 let ogre = new character("Ogre", "Monster", null,
@@ -91,7 +91,7 @@ let demonbeast = new character("Fuklar", "Monster", null,
     new weapon("Claws of the Hunter", "Demon claw", 40, 90, true),
     [{
         text: "The demonbeast swings it claws at your throat",
-        damage: 90,
+        damage: 40,
         crit: 90
     },{
         text: "The demonbeast swipes at your chest",
@@ -119,7 +119,7 @@ let guard = new character("Guard", "Enemy", null,
         crit: 0
     }], 300);
 
-let boss = new character("Nordir", "Player", playerPersonality,
+let boss = new character("Aant", "Boss", null,
     new weapon("The soul eater", "Legendary blade", 60, 60, false),
     [{
         text: "Aant withers your soul",
@@ -136,19 +136,19 @@ let boss = new character("Nordir", "Player", playerPersonality,
     }], 300);
 
 const weapons = [
-                 new weapon("Hollow Blade", "Sword", 0, 0, false),
-                 new weapon("Excalibur", "Sword", 40, 80, true),
-                 new weapon("Sword of Hellfire", "Sword", 50, 60, true),
-                 new weapon("Blade of Legion", "Sword", 40, 40, true),
-                 new weapon("Fury Blade", "Sword", 40, 70, true),
-                 new weapon("Blade of Erroneous Fate", "Sword", 90, 10, true),
-                 new weapon("Steady Blade", "Sword", 50, 50, true),
-                 new weapon("Warhammer of Might", "Axe", 80, 40, true),
-                 new weapon("Durendal", "Sword", 100, 100, true),
-                 new weapon("Thunderhammer of Ragnarok", "Axe", 100, 20, true),
-                 new weapon("Stormforged Devil Cometh", "Axe", 150, 15, true),
-                 new weapon("Blade of Godsfate", "Sword", 10, 100, true),
-                ];
+    new weapon("Hollow Blade", "Sword", 0, 0, false),
+    new weapon("Excalibur", "Sword", 40, 80, true),
+    new weapon("Sword of Hellfire", "Sword", 50, 60, true),
+    new weapon("Blade of Legion", "Sword", 40, 40, true),
+    new weapon("Fury Blade", "Sword", 40, 70, true),
+    new weapon("Blade of Erroneous Fate", "Sword", 90, 10, true),
+    new weapon("Steady Blade", "Sword", 50, 50, true),
+    new weapon("Warhammer of Might", "Axe", 80, 40, true),
+    new weapon("Durendal", "Sword", 100, 100, true),
+    new weapon("Thunderhammer of Ragnarok", "Axe", 100, 20, true),
+    new weapon("Stormforged Devil Cometh", "Axe", 150, 15, true),
+    new weapon("Blade of Godsfate", "Sword", 10, 100, true),
+];
 
 var weap = -1;
 function randomFromArray(arr){
@@ -206,17 +206,18 @@ function attackMove(attack, enemy, playerWin, enemyWin) {
 
         if (dodgeCount === 3 || dodgeCount === 4) {
             if (dodgeCount === 3){
-            textElement.innerText += " \nThe enemy begins to understand your attacks";
+                textElement.innerText += " \nThe enemy begins to understand your attacks";
             } else if (dodgeCount === 4) {
-            textElement.innerText += " \nThe enemy is preparing to counter your attacks.";
+                textElement.innerText += " \nThe enemy is preparing to counter your attacks.";
             }
         }
     } else {
-        textElement.innerText += " \nNordir attempts to flee from the enemy";
+        textElement.innerText += " \nNordir attempts to launch a brutal strike at the enemy";
         let esc = Math.floor(Math.random() * 100);
         if (esc <= 20) {
             textElement.innerText += " \nNordir's attempt is successful";
             sleep(5000)
+            player.health = 250;
             dodgeCount = 0;
             return showText(playerWin);
         } else {
@@ -230,6 +231,7 @@ function attackMove(attack, enemy, playerWin, enemyWin) {
         textElement.innerText += " \nNordir has slain the enemy";
         sleep(5000)
         dodgeCount = 0;
+        player.health = 250;
         return showText(playerWin);
     } else {
         if (dodgeCount === 5) {
@@ -246,6 +248,7 @@ function attackMove(attack, enemy, playerWin, enemyWin) {
                 textElement.innerText += " \nThe enemy's strike hits critically";
             }
             player.health -= damage;
+            console.log(enemyAttack);
         }
         textElement.innerText += " \nNordir's Health: " + player.health;
 
@@ -271,6 +274,7 @@ function runCombat(currentNode) {
     currentNode.player.attacks.forEach(attack => {
         const button = document.createElement('button');
         button.innerText = attack.text;
+        button.classList.add("choice");
         button.addEventListener('click', () => attackMove(attack, currentNode.enemy,
             currentNode.goNext[1].nextText, currentNode.goNext[0].nextText));
         optionButtons.appendChild(button);
@@ -294,6 +298,7 @@ function showText(textIndex) {
                 button.innerText = "Exchange Your Weapon";
                 let oldWeapon = player.weapon;
                 button.addEventListener('click', () => changeWeapon(oldWeapon, weapons[currentNode.weaponID]));
+                button.classList.add("choice");
                 optionButtons.appendChild(button);
                 swapCheck = true;
             }
@@ -302,6 +307,7 @@ function showText(textIndex) {
                 const button = document.createElement('button');
                 button.innerText = option.text;
                 button.addEventListener('click', () => selectOption(option));
+                button.classList.add("choice");
                 optionButtons.appendChild(button);
             }
         })
@@ -323,29 +329,29 @@ function selectOption(option) {
 }
 
 const storyPath = [
-        new storyNode(1,
-            "Nordir is awoken after the funeral, he walks through his dwelling to find his father's chair, there's a letter there addressed to him.",
-            [{
-                text: "Read letter",
-                nextText: 2
+    new storyNode(1,
+        "Nordir is awoken after the funeral, he walks through his dwelling to find his father's chair, there's a letter there addressed to him.",
+        [{
+            text: "Read letter",
+            nextText: 2
+        }], false),
+    new storyNode(2,
+        "Dearest Nordir,\n If you're reading this I am dead. In death, I leave you the Sword of Thundership " +
+        "forged from the flames of Mount Furst, use it wisely. I haven't much time so I must tell you this, I am dead because of " +
+        "an erroneous breed called the Montcore, ruled by Aant' El of Mont. They threaten the saftey of our realm. We are the last desendants of "+
+        "the Thunder Breed so you are the sole defense against the Montcore. Aant' El desires your soul so that he can use the Thunder Breed's power for domination. I failed in my mission " +
+        "to stop him, you must finish the job. Travel across Elroy to the town of Hampt, there you will find the warlock Heimindon the Fair, he will help you. " +
+        "I must leave you now, rememeber in my death I will always be with you.\n\n I love you very much my son,\n\t Geralt of Elroy\n\n" +
+        "Nordir puts down the letter and runs to the cellar to grab The Sword of Thundership. He packs a bag and hurrily runs out of his father's house. " +
+        "No time to waste.",
+        [{
+            text: "Start quest",
+            nextText: 4
+        },
+            {
+                text: "Forge another weapon",
+                nextText: 3
             }], false),
-        new storyNode(2,
-            "Dearest Nordir,\n If you're reading this I am dead. In death, I leave you the Sword of Thundership " +
-            "forged from the flames of Mount Furst, use it wisely. I haven't much time so I must tell you this, I am dead because of " +
-            "an erroneous breed called the Montcore, ruled by Aant' El of Mont. They threaten the saftey of our realm. We are the last desendants of "+
-            "the Thunder Breed so you are the sole defense against the Montcore. Aant' El desires your soul so that he can use the Thunder Breed's power for domination. I failed in my mission " +
-            "to stop him, you must finish the job. Travel across Elroy to the town of Hampt, there you will find the warlock Heimindon the Fair, he will help you. " +
-            "I must leave you now, rememeber in my death I will always be with you.\n\n I love you very much my son,\n\t Geralt of Elroy\n\n" +
-            "Nordir puts down the letter and runs to the cellar to grab The Sword of Thundership. He packs a bag and hurrily runs out of his father's house. " +
-            "No time to waste.",
-            [{
-                    text: "Start quest",
-                    nextText: 4
-                },
-                {
-                    text: "Forge another weapon",
-                    nextText: 3
-                }], false),
     {
         id: 99,
         text: "Nordir has DIED, perhaps better choices won't seal your fate next time....",
@@ -357,21 +363,21 @@ const storyPath = [
         ]
     },
     new weaponNode(0, 3,
-            "Nordir foges a meer Hollow Blade. Nordir never was a great blacksmith.",
-            [{
-                text: "Continue",
-                nextText: 4
-            }], true),
-        new storyNode(4,
-            "\"Which way should I go?\" Nordir thinks to himeslf.",
-            [{
-                    text: "Left",
-                    nextText: 6
-                },
-                {
-                    text: "Right",
-                    nextText: 5
-                }], false),
+        "Nordir foges a meer Hollow Blade. Nordir never was a great blacksmith.",
+        [{
+            text: "Continue",
+            nextText: 4
+        }], true),
+    new storyNode(4,
+        "\"Which way should I go?\" Nordir thinks to himeslf.",
+        [{
+            text: "Left",
+            nextText: 6
+        },
+            {
+                text: "Right",
+                nextText: 5
+            }], false),
 
     new storyNode(5,
         "Nordir headed right, past the meadow. He walked for a couple hours before spotting a villiage in the " +
@@ -381,19 +387,19 @@ const storyPath = [
             nextText: 11
         }], false),
 
-        new storyNode(6,
-            "Nordir wanders to the left into the Forrest of Ferrar, he only travels 500 paces before he encounters a " +
-            "repulsive Ogre. \nOgre: What be your buisness her' boy? ",
-            [
-                {
-                    text: "Fight",
-                    nextText: 8
-                },
-                {
-                    text: "Talk",
-                    nextText: 7
-                }
-            ], false),
+    new storyNode(6,
+        "Nordir wanders to the left into the Forrest of Ferrar, he only travels 500 paces before he encounters a " +
+        "repulsive Ogre. \nOgre: What be your buisness her' boy? ",
+        [
+            {
+                text: "Fight",
+                nextText: 8
+            },
+            {
+                text: "Talk",
+                nextText: 7
+            }
+        ], false),
 
     new storyNode(7,
         "Nordir: \"I mean no trouble, I'm travelling to a village outside Elroy called Hampt, " +
@@ -402,9 +408,9 @@ const storyPath = [
         "Nordir thanked the Ogre and continued on his way. Upon leaving the forrest, Nordir spots a village in the distance, " +
         "Hampt! Tired and ready for a rest, he heads towards the humble village.",
         [{
-        text: "Go to Pub",
-        nextText: 11
-    }], false),
+            text: "Go to Pub",
+            nextText: 11
+        }], false),
 
     new combatNode(8,
         player, ogre, "Nordir: \"Shut up and fight you ugly beast!\"",
@@ -413,8 +419,8 @@ const storyPath = [
                 text: "You died",
                 nextText: 9
             }, {
-                text: "Win",
-                nextText: 10
+            text: "Win",
+            nextText: 10
         }]),
 
     new storyNode(9,
@@ -426,7 +432,7 @@ const storyPath = [
             }
 
         ], false),
-        new weaponNode(randomFromArray(weapons), 10,
+    new weaponNode(randomFromArray(weapons), 10,
         "The Ogre takes his last breath and perishes. " +
         ". Nordir walks into the Ogre's dwelling to find a chest. Inside there a " + weapons[weap].name +
         " Nordir takes the weapon and carries on his way towards the village. Upon leaving the forrest, " +
@@ -729,9 +735,9 @@ const storyPath = [
             }
         ], false),
 
-        new weaponNode(randomFromArray(weapons), 31, 
+    new weaponNode(randomFromArray(weapons), 31,
         "Nordir: \"Oh I'm afraid I interjected that in jest, I'm looking for a warlock called Heimindon the Fair, he is to guide me on a quest to slay Aant' El of Mont.\"\n Mysterious Stranger:"+
-        "\" Do not speak his name here boy! He has spies...\"\n Nordir: \"You know of him?\"\n Mysterious Stranger: \"Yes boy, I am Heimindon the Fair, and you are?\"\n Nordir: \"Nordir, Son of Geralt.\"\n Heimindon:"+ 
+        "\" Do not speak his name here boy! He has spies...\"\n Nordir: \"You know of him?\"\n Mysterious Stranger: \"Yes boy, I am Heimindon the Fair, and you are?\"\n Nordir: \"Nordir, Son of Geralt.\"\n Heimindon:"+
         "\"Geralt's son? He must have passed then... I'm sorry boy.\"\n Nordir: \"In death he sent me on his quest.\"\n Heimindon:\"Yes of course, the journey is harrowing and dangerous.\"\n Nordir: \"I'm ready.\"\n" +
         " Heimindon:\"I see, you must travel to the Old Kingdom of York.\"\n Nordir: \"The fallen castle?\"\n Heimindon: \"Yes, Aant' El dwells there, take this "+ weapons[weap].name + " it will help you on your journey. Good luck, boy.\"\n"+
         "Nordir thanked Heimindon and walked out of the pub.",
@@ -1007,22 +1013,30 @@ const storyPath = [
             }
         ], false),
 
-        new storyNode(98,
-            "Nordir makes a quick move and stabs Aant' El through the heart. \nNordir: \"You are done Aant' El,"+
-            " the Montcore have no power here as long as I am here to protect it.\" "+
-            "\nAant' El weakly forces out his final words. \nAant' El: \"Very well, the Montcore are a patient breed,"+
-            " we'll have your soul soon. Like vultures circling meatbile we circle you Nordir.\"\n Nordir, tired of the"+
-            " rumblings removes his sword from Aant' El's midsection on slices off his head. \nNordir: \"Enough of the "+
-            "speculation, for I'm not finished yet. Let it be known by the slaying of Aant' El, I am a fierce warrior. "+
-            "Only with permission shall death take me, and I will not grant it without first securing my people.\"\n"+
-            " Nordir attaches Aant' El's head to his belt and retires to his home in Elroy. ",
+    new storyNode(98,
+        "Nordir makes a quick move and stabs Aant' El through the heart. \nNordir: \"You are done Aant' El,"+
+        " the Montcore have no power here as long as I am here to protect it.\" "+
+        "\nAant' El weakly forces out his final words. \nAant' El: \"Very well, the Montcore are a patient breed,"+
+        " we'll have your soul soon. Like vultures circling meatbile we circle you Nordir.\"\n Nordir, tired of the"+
+        " rumblings removes his sword from Aant' El's midsection on slices off his head. \nNordir: \"Enough of the "+
+        "speculation, for I'm not finished yet. Let it be known by the slaying of Aant' El, I am a fierce warrior. "+
+        "Only with permission shall death take me, and I will not grant it without first securing my people.\"\n"+
+        " Nordir attaches Aant' El's head to his belt and retires to his home in Elroy. ",
+        [
+            {
+                text: "Restart",
+                nextText: -1
+            }
+        ], false),
+
+    new storyNode(100, "Nordir has exacted his vengence",
         [
             {
                 text: "Restart",
                 nextText: -1
             }
         ], false)
-    ]
+];
 
 startGame();
 

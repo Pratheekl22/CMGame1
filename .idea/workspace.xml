@@ -1,7 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="51085071-c500-4476-8f92-2fe645f47bb2" name="Default Changelist" comment="" />
+    <list default="true" id="51085071-c500-4476-8f92-2fe645f47bb2" name="Default Changelist" comment="Testing Intellij and Git integration">
+      <change afterPath="$PROJECT_DIR$/Integration Testing.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IntegrationTest.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GamePage.html" beforeDir="false" afterPath="$PROJECT_DIR$/GamePage.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GameTree.js" beforeDir="false" afterPath="$PROJECT_DIR$/GameTree.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/indexCSS.css" beforeDir="false" afterPath="$PROJECT_DIR$/indexCSS.css" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -15,6 +41,9 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1kF5LxyYM4MTz2XLlL5NeguTywS" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -26,6 +55,19 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.github.ui.GithubSettingsConfigurable" />
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -45,11 +87,45 @@
       <workItem from="1606095399107" duration="38000" />
       <workItem from="1606139822294" duration="7341000" />
       <workItem from="1606160166829" duration="4376000" />
+      <workItem from="1606337723303" duration="7796000" />
+      <workItem from="1606345620202" duration="35000" />
+      <workItem from="1606413067450" duration="2369000" />
     </task>
+    <task id="LOCAL-00001" summary="Testing Intellij and Git integration">
+      <created>1606337820601</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1606337820601</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Testing Intellij and Git integration">
+      <created>1606337957407</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1606337957407</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Testing Intellij and Git integration" />
+    <option name="LAST_COMMIT_MESSAGE" value="Testing Intellij and Git integration" />
   </component>
   <component name="WindowStateProjectService">
     <state x="3325" y="236" key="#com.intellij.ide.util.MemberChooser" timestamp="1605285429956">
@@ -64,10 +140,18 @@
       <screen x="2560" y="0" width="1920" height="1040" />
     </state>
     <state x="3021" y="165" key="SettingsEditor/0.0.2560.1400/2560.0.1920.1040@2560.0.1920.1040" timestamp="1605301556970" />
+    <state x="3112" y="253" key="Vcs.Push.Dialog.v2" timestamp="1606337962731">
+      <screen x="2560" y="0" width="1920" height="1040" />
+    </state>
+    <state x="3112" y="253" key="Vcs.Push.Dialog.v2/0.0.2560.1400/2560.0.1920.1040@2560.0.1920.1040" timestamp="1606337962731" />
     <state x="3129" y="209" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1605574997245">
       <screen x="2560" y="0" width="1920" height="1040" />
     </state>
     <state x="3129" y="209" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.2560.1400/2560.0.1920.1040@2560.0.1920.1040" timestamp="1605574997245" />
+    <state x="3337" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1606338009094">
+      <screen x="2560" y="0" width="1920" height="1040" />
+    </state>
+    <state x="3337" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.2560.1400/2560.0.1920.1040@2560.0.1920.1040" timestamp="1606338009094" />
     <state x="2902" y="203" key="new project wizard" timestamp="1605302004375">
       <screen x="2560" y="0" width="1920" height="1040" />
     </state>

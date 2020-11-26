@@ -178,13 +178,17 @@ body {
     user-select: none;
 }
 
+.choice:hover {
+    background-color: orange;
+}
+
 #choice-1:hover {
     background-color: orange;
 }
 #choice-2:hover {
     background-color: orange;
 }
-#exchange:hover {
+#choice-3:hover {
     background-color: orange;
 }
 #exchange {
