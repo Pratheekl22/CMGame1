@@ -23,6 +23,7 @@ body {
 
 
 /*-------------------- TITLE SCREEN UI --------------------*/
+
 .title-screen {
     display: none; /*remove/add this line to turn on and off the title screen*/
     text-align: center;
@@ -63,7 +64,7 @@ body {
 }
 .bars {
     /* display: none; */
-    width: 76%;
+    width: 80%;
     margin-left: 10%;
     margin-right: 10%;
     height: 31%;

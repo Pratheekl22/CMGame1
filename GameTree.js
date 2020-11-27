@@ -103,7 +103,7 @@ let demonbeast = new character("Fuklar", "Monster", null,
         crit: 0
     }], 150);
 
-let guard = new character("Guard", "Enemy", null,
+let guard = new character("Montcore Guards", "Enemy", null,
     new weapon("Spear of the Servant", "Spear", 80, 0, false),
     [{
         text: "The Guard stabs at your throat",
@@ -119,7 +119,7 @@ let guard = new character("Guard", "Enemy", null,
         crit: 0
     }], 300);
 
-let boss = new character("Aant", "Boss", null,
+let boss = new character("Aant' El of Mont", "Boss", null,
     new weapon("The soul eater", "Legendary blade", 60, 60, false),
     [{
         text: "Aant withers your soul",
@@ -383,7 +383,7 @@ const storyPath = [
         [{
             text: "Read letter",
             nextText: 2
-        }], false, "N"),
+        }], false),
     new storyNode(2,
         "Dearest Nordir,\n If you're reading this I am dead. In death, I leave you the Sword of Thundership " +
         "forged from the flames of Mount Furst, use it wisely. I haven't much time so I must tell you this, I am dead because of " +
@@ -400,7 +400,7 @@ const storyPath = [
             {
                 text: "Forge another weapon",
                 nextText: 3
-            }], false, "N"),
+            }], false),
     {
         id: 99,
         text: "Nordir has DIED, perhaps better choices won't seal your fate next time....",
@@ -483,7 +483,7 @@ const storyPath = [
         ], false),
     new weaponNode(randomFromArray(weapons), 10,
         "The Ogre takes his last breath and perishes. " +
-        ". Nordir walks into the Ogre's dwelling to find a chest. Inside there a " + weapons[weap].name +
+        ". Nordir walks into the Ogre's dwelling to find a chest. Inside there's a " + weapons[weap].name +
         " Nordir takes the weapon and carries on his way towards the village. Upon leaving the forrest, " +
         "Nordir spots a village in the distance, Hampt! Tired and ready for a rest, he heads towards the humble village.",
         [
@@ -618,7 +618,7 @@ const storyPath = [
                 text: "Flee",
                 nextText: 33
             }
-        ], false, 7),
+        ], false, 2),
 
     new storyNode(19,
         "Nordir begins his journey at once and heads down the lane towards York. " +
@@ -652,9 +652,9 @@ const storyPath = [
                 text: "Talk to the demonbeast",
                 nextText: 22
             }
-        ], true, 3),
+        ], true, ),
     new combatNode(21, player, demonbeast,
-        "Nordir: \"I haven't have time for riddles Fuklar, and you haven't much time to live left.\"",
+        "Nordir: \"I haven't much time for riddles Fuklar, and you haven't much time to live left.\"",
         [
             {
                 text: "Die",
@@ -664,7 +664,7 @@ const storyPath = [
                 text: "Live",
                 nextText: 23
             }
-        ]),
+        ], 3),
 
     new storyNode(22,
         "Nordir: \"I haven't much time for this beast, but I know your riddling ways. " +
@@ -679,7 +679,7 @@ const storyPath = [
                 text: "A well near a brook",
                 nextText: 25
             }
-        ], false),
+        ], false, 3),
 
     new weaponNode(randomFromArray(weapons), 23,
         "Nordir slays the Demonbeast. As the soul withers, Nordir absorbs Fuklar's power and gains "+ weapons[weap].name +". " +
@@ -812,7 +812,7 @@ const storyPath = [
                 text: "Live",
                 nextText: 34
             }
-        ]),
+        ], 8),
 
     new storyNode(33,
         "Nordir jumps out of his skin and runs back to his dwelling in Elroy. " +
@@ -928,7 +928,7 @@ const storyPath = [
 
     new storyNode(41,
         "Nordir walks down the left hallway and encounters Aant' El laying in a pile of corpses. " +
-        "Aant' El is gasping for air. \nAant' El: Nordir son of Geralt, spare me! Spare me for your " +
+        "Aant' El is gasping for air. \nAant' El: \"Nordir son of Geralt, spare me! Spare me for your " +
         "father was a noble warrior and left me alive. The spirits who took him were not soldiers of " +
         "my own they were men of the Elder Realm!\" \nNordir was skepical, the Montcore have a mastery of " +
         "tricks to decieve warriors, but this was different. Aant' El's eye was pleading for mercy. " +
@@ -962,7 +962,7 @@ const storyPath = [
 
     new storyNode(43,
         "Nordir: \"I trust not in your idle game as much as I fail to trust in your ghostly figure Aant' El.\" " +
-        "\nNordir slices the projection's head clean off and Aant' El's illusion fades into smoke. " +
+        "\n\nNordir slices the projection's head clean off and Aant' El's illusion fades into smoke. " +
         "Aant' El comes behind Nordir. \nNordir: \"Resorting to smoke and mirrors Aant' El? I thought you were a " +
         "more cunning warrior that that.\" \nAant' El: \"As I thought of you to be more of a fool, nevertheless " +
         "I'll take your soul as you die by my real hands.\" ",
@@ -972,7 +972,7 @@ const storyPath = [
                 nextText: 44
             },
             {
-                text: "Sacrifice your soul",
+                text: "You just want my soul? No problem!",
                 nextText: 45
             }
         ], false),
@@ -991,7 +991,7 @@ const storyPath = [
         ]),
 
     new storyNode(45,
-        "Nordir: If only my soul you're are after, I am happy to oblige. " +
+        "Nordir: \"If only my soul you're are after, I am happy to oblige. " +
         "Take it and leave me be.\" \nAant' El stepped up to Nordir and swiftly pulled out his heart." +
         "\nAant' El: \"Blistering fool, man cannot survive without his heart.\"" +
         "\nNordir expires. Maybe focus on vengance next time. ",
@@ -1078,7 +1078,14 @@ const storyPath = [
             }
         ], false),
 
-    new storyNode(100, "Nordir has exacted his vengence",
+    new storyNode(100, "Nordir makes a quick move and stabs Aant' El through the heart. \nNordir: \"You are done Aant' El,"+
+    " the Montcore have no power here as long as I am here to protect it.\" "+
+    "\nAant' El weakly forces out his final words. \nAant' El: \"Very well, the Montcore are a patient breed,"+
+    " we'll have your soul soon. Like vultures circling meatbile we circle you Nordir.\"\n Nordir, tired of the"+
+    " rumblings removes his sword from Aant' El's midsection on slices off his head. \nNordir: \"Enough of the "+
+    "speculation, for I'm not finished yet. Let it be known by the slaying of Aant' El, I am a fierce warrior. "+
+    "Only with permission shall death take me, and I will not grant it without first securing my people.\"\n"+
+    " Nordir attaches Aant' El's head to his belt and retires to his home in Elroy.",
         [
             {
                 text: "Restart",
