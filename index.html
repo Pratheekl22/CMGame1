@@ -17,8 +17,8 @@
     </head>
     <body id="screen">
         <!-- TITLE SCREEN UI -->
-        <div id="title" class="title-screen"><img id="nordir" src="nordir.png"></div>
-        <div id="start" class="title-screen"><button id="start"><img id="start-img" src="start.png"></div>
+        <div  class="title-screen"><img id="nordir" src="Assets/Game Back-Recovered.png" width="100%" height="100%"></div>
+        <div id="start" class="title-screen"><button id="start">Click to Start</div>
 
         <!-- CHARACTER UI -->
         <div id="main-character" class="characters"><img id="Nordir" class="" src="Assets/Char/Final_Protagonist.png" width="800" height="auto" alt=""></div>
@@ -47,12 +47,12 @@
         <script src="GameTree.js"></script>
         <!-- Reference -->
         <div id="info">
-            <button id="weapon_ref">Weapon Guide</button>
-            <button id="best">Bestiary</button>
-            <div id="bes">Name - Type - Max Health - Danger Level<br>
+            <button id="weapon_ref" onclick="openWeap()">Weapon Guide</button>
+            <button id="best" onclick="openBest()">Bestiary</button>
+            <div id="bes"><strong>Name - Type - Max Health - Danger Level</strong><br>
                 Ogre - Tank/Troll - 400 - Low <br> Fuklar - DemonBeast - 500 - Moderate <br> Montcore Guards
                 - Montcore - 800 - Moderate <br> Aant' El of Mont - Montcore - 1300 - Very High</div>
-            <div id="wea"> Name  -   Type  -   Max Damage  -  Critical Chance<br>
+            <div id="wea"> <strong>Name -   Type  -   Max Damage  -  Critical Chance</strong><br>
                 Hollow Blade - Sword - 0 - 0<br>Sword of Thundership - Sword - 10 - 33<br>Excalibur - Sword - 40 - 80<br>
                 Sword of Hellfire - Sword - 50 - 60<br>Fury Blade - Sword - 40 - 70<br>Blade of Erroneous Fate - Sword - 90 - 10<br>
                Stormforged Devil Cometh - Axe - 150 - 15<br>Thunderhammer of Ragnarok - Axe - 100 - 20<br>Blade of Legion - Sword - 40 - 40<br>Durendal - Sword - 100 - 100

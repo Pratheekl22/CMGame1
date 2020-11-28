@@ -321,8 +321,10 @@ function showOption(option) {
 function selectOption(option) {
     const nextTextNodeID = option.nextText;
     if (nextTextNodeID <= 0) {
-        toTrans(15);
-        return startGame();
+            toTrans(15);
+            return startGame();
+       
+        
     }
     showText(nextTextNodeID);
 }
@@ -366,7 +368,7 @@ const storyPath = [
         [{
             text: "Continue",
             nextText: 4
-        }], true),
+        }], true, 1),
     new storyNode(4,
         "\"Which way should I go?\" Nordir thinks to himeslf.",
         [{
@@ -409,7 +411,7 @@ const storyPath = [
         [{
             text: "Go to Pub",
             nextText: 11
-        }], false, ),
+        }], false, 3),
 
     new combatNode(8,
         player, ogre, "Nordir: \"Shut up and fight you ugly beast!\"",
@@ -456,7 +458,7 @@ const storyPath = [
                 text: "Engage with the man",
                 nextText: 13
             }
-        ], false, 5),
+        ], false, 4),
     new storyNode(12,
         "Nordir ignores the stranger's advances. " +
         "Disturbed the stranger stands and freezes the roughhousing around Nordir. " +
@@ -568,7 +570,7 @@ const storyPath = [
                 text: "Flee",
                 nextText: 33
             }
-        ], false, 6),
+        ], false, 7),
 
     new storyNode(19,
         "Nordir begins his journey at once and heads down the lane towards York. " +
@@ -602,7 +604,7 @@ const storyPath = [
                 text: "Talk to the demonbeast",
                 nextText: 22
             }
-        ], true, 4),
+        ], true, 5),
     new combatNode(21, player, demonbeast,
         "Nordir: \"I haven't much time for riddles Fuklar, and you haven't much time to live left.\"",
         [
@@ -640,7 +642,7 @@ const storyPath = [
                 text: "Let's Go",
                 nextText: 39
             }
-        ], true, 10),
+        ], true, 11),
 
     new storyNode(24,
         "Fuklar: \"You are correcT manBeaST, BuT you are not done yeT.\" " +
@@ -705,7 +707,7 @@ const storyPath = [
                 text: "Let's go",
                 nextText: 39
             }
-        ], false, 10),
+        ], false, 11),
 
     new storyNode(29,
         "Fuklar: \"You have lost man beast! Die as you are!\" " +
@@ -732,7 +734,7 @@ const storyPath = [
                 text: "Let's talk",
                 nextText: 36
             }
-        ], false, 6),
+        ], false, 7),
 
     new weaponNode(randomFromArray(weapons), 31,
         "Nordir: \"Oh I'm afraid I interjected that in jest, I'm looking for a warlock called Heimindon the Fair, he is to guide me on a quest to slay Aant' El of Mont.\"\n Mysterious Stranger:"+
@@ -762,7 +764,7 @@ const storyPath = [
                 text: "Live",
                 nextText: 34
             }
-        ], 11),
+        ], 10),
 
     new storyNode(33,
         "Nordir jumps out of his skin and runs back to his dwelling in Elroy. " +
@@ -784,7 +786,7 @@ const storyPath = [
                 text: "Lets go!",
                 nextText: 39
             }
-        ], true, 10),
+        ], true, 11),
 
     new storyNode(35,
         "Nordir: \"I'll have it all beautiful.\" \nRose takes a small knife from her spruce undergarmet " +
@@ -798,7 +800,7 @@ const storyPath = [
                 text: "Restart",
                 nextText: -1
             }
-        ], false, 7),
+        ], false, 6),
 
     new storyNode(36,
         "Nordir: \"I'm very happy your here, but I shant loose my chivalry with a lady of the night." +
@@ -813,7 +815,7 @@ const storyPath = [
                 text: "Just a little",
                 nextText: 38
             }
-        ], false, 7),
+        ], false, 6),
 
     new storyNode(37,
         "Nordir: \"I'll have it all beautiful.\" \nRose takes a small knife from her spruce undergarmet " +
@@ -827,7 +829,7 @@ const storyPath = [
                 text: "Restart",
                 nextText: -1
             }
-        ], false, 7),
+        ], false, 6),
 
     new storyNode(38,
         "Nordir: \"Perhaps we shall refrain from having too much fun my quest requires a night's rest, maybe just " +
@@ -893,7 +895,7 @@ const storyPath = [
                 text: "Doubt",
                 nextText: 43
             }
-        ], false, 14),
+        ], false, 13),
 
     new storyNode(42,
         "Nordir: \"I will fight with you against this greater threat. What shall be our first move?\" " +
@@ -969,7 +971,7 @@ const storyPath = [
                 text: "win",
                 nextText: 100
             }
-        ], 14),
+        ], 13),
 
     new storyNode(47,
         "Using a small air duct, Nordir jumps up onto a ledge and shimmies onto a platform before crouching under an airduct. " +
@@ -987,7 +989,7 @@ const storyPath = [
                 text: "Fight him",
                 nextText: 48
             }
-        ], false, 14),
+        ], false, 13),
 
     new combatNode(48, player, boss,
         "Nordir: \"I very much like my soul thanks, why dont we work on sawing off that head of yours, now.\"",
@@ -1026,7 +1028,7 @@ const storyPath = [
                 text: "Restart",
                 nextText: -1
             }
-        ], false, 13),
+        ], false, 14),
 
     new storyNode(100, "Nordir makes a quick move and stabs Aant' El through the heart. \nNordir: \"You are done Aant' El,"+
     " the Montcore have no power here as long as I am here to protect it.\" "+
@@ -1041,7 +1043,7 @@ const storyPath = [
                 text: "Restart",
                 nextText: -1
             }
-        ], false, 13)
+        ], false, 14)
 ];
 class pkg {
     bTrans;
@@ -1061,17 +1063,17 @@ const fullTransitions = [
     new pkg("elroy", "Nordir","N"),
     new pkg("forest_day", "Nordir", "Ogre"),
     new pkg("forest_day", "Nordir", "N"),
-    new pkg("pub_interior", "Nordir", "N"),
     new pkg("pub_interior", "Nordir", "Heimindon"),
-    new pkg("room_inn", "Nordir", "N"),
+    new pkg("pub_interior", "Nordir", "N"),
     new pkg("room_inn", "Nordir", "Rose"),
+    new pkg("room_inn", "Nordir", "N"),
     new pkg("forest_night", "Nordir", "Fuklar"),
     new pkg("forest_night", "Nordir", "N"),
-    new pkg("york_e", "Nordir", "N"),
     new pkg("york_e", "Nordir", "Guards"),
+    new pkg("york_e", "Nordir", "N"),
     new pkg("york_i", "Nordir", "N"),
-    new pkg("throne_room", "Nordir","N"),
-    new pkg("throne_room", "Nordir", "Aant"),
+    new pkg("throne_room", "Nordir","Aant"),
+    new pkg("throne_room", "Nordir", "N"),
     new pkg("house_interior", "N", "N")]
 
 function toTrans(index){
@@ -1079,18 +1081,22 @@ function toTrans(index){
         console.log(fullTransitions[index].cTrans);
         for (var i = 0; i < fullTransitions.length; i++){
             if (fullTransitions[i].cTrans !== "N"){
+                
         document.getElementById(fullTransitions[i].cTrans).style.display = "none";
             }
         }
     }
     if(fullTransitions[index].cTrans2 === "N"){
         console.log(fullTransitions[index].cTrans2);
+            if(index !== 0 && index !== 1 && index !== 12 && index !== 15){
+                document.getElementById(fullTransitions[index-1].cTrans2).className ='classLeftOut';
+                }
+        }
         for (var i = 0; i < fullTransitions.length; i++){
             if (fullTransitions[i].cTrans2 !== "N"){
         document.getElementById(fullTransitions[i].cTrans2).style.display = "none";
             }
         }
-    }
 
     console.log(fullTransitions[index].bTrans);
     document.getElementById(fullTransitions[index].bTrans).style.display = "block";
@@ -1103,6 +1109,7 @@ function toTrans(index){
     }
     if (fullTransitions[index].cTrans !== "N"){
         document.getElementById(fullTransitions[index].cTrans).style.display = "block";
+        document.getElementById(fullTransitions[index].cTrans).className ='classLeftIn';
         console.log(fullTransitions[index].cTrans);
         var current = fullTransitions[index].cTrans
         for (var i = 0; i < fullTransitions.length; i++){
@@ -1117,6 +1124,7 @@ function toTrans(index){
     }
     if (fullTransitions[index].cTrans2 !== "N"){
         document.getElementById(fullTransitions[index].cTrans2).style.display = "block";
+        document.getElementById(fullTransitions[index].cTrans2).className ='classRightIn';
         console.log(fullTransitions[index].cTrans2);
         var current = fullTransitions[index].cTrans2
         for (var i = 0; i < fullTransitions.length; i++){
@@ -1129,15 +1137,37 @@ function toTrans(index){
     }
 }
 
-const wepwep = document.getElementById("weapon_ref");
-if(wepwep){
-wepwep.addEventListener('click', function(){
-    document.getElementById('wea').style.display = "block";
-});
-}
-/*document.getElementById("best").addEventListener("click", function() {
-    document.getElementById("bes").style.display = "block";
-  });*/
+var timesclick = 0;
+var timesclick2 = 0;
+function openWeap() {
+    if (timesclick >= 1){
+        document.getElementById("wea").style.display = "none";
+        timesclick = 0;
 
-startGame();
+    } else {
+        document.getElementById("wea").style.display = "block";
+        timesclick++;
+        
+    }
+}
+function openBest() {
+    if (timesclick2 >= 1){
+        document.getElementById("bes").style.display = "none";
+        timesclick2 = 0;
+
+    } else {
+        document.getElementById("bes").style.display = "block";
+        timesclick2++;
+        
+    }
+}
+document.getElementsByClassName("title-screen")[0].style.display = "block";
+    document.getElementsByClassName("title-screen")[1].style.display = "block";
+        document.getElementById("start").addEventListener('click', function(){
+        document.getElementsByClassName("title-screen")[0].style.display = "none";
+        document.getElementsByClassName("title-screen")[1].style.display = "none";
+        startGame();
+        });
+
+
 
