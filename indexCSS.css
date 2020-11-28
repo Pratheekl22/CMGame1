@@ -173,6 +173,8 @@ body {
 #Rose{
     display: none;
     z-index: inherit;
+    transform: translate(0px,150px);
+    
 }
 #Guards{
     display: none;

@@ -798,7 +798,7 @@ const storyPath = [
                 text: "Restart",
                 nextText: -1
             }
-        ], false),
+        ], false, 7),
 
     new storyNode(36,
         "Nordir: \"I'm very happy your here, but I shant loose my chivalry with a lady of the night." +
@@ -813,7 +813,7 @@ const storyPath = [
                 text: "Just a little",
                 nextText: 38
             }
-        ], false),
+        ], false, 7),
 
     new storyNode(37,
         "Nordir: \"I'll have it all beautiful.\" \nRose takes a small knife from her spruce undergarmet " +
@@ -827,7 +827,7 @@ const storyPath = [
                 text: "Restart",
                 nextText: -1
             }
-        ], false),
+        ], false, 7),
 
     new storyNode(38,
         "Nordir: \"Perhaps we shall refrain from having too much fun my quest requires a night's rest, maybe just " +
