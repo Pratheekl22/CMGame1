@@ -1,42 +1,4 @@
-// var clrvis = false;
-// document.getElementById('beast').addEventListener('click', function() {
-//     document.getElementById('bes').innerHTML = "Name - Type - Max Health - Danger Level<br>" +
-//     "Ogre - Tank/Troll - 400 - Low <br> Fuklar - DemonBeast - 500 - Moderate <br> Montcore Guards "+
-//     "- Montcore - 800 - Moderate <br> Aant' El of Mont - Montcore - 1300 - Very High";
-//         "Ogre - Tank/Troll - 400 - Low <br> Fuklar - DemonBeast - 500 - Moderate <br> Montcore Guards "+
-//         "- Montcore - 800 - Moderate <br> Aant' El of Mont - Montcore - 1300 - Very High";
-//     if (clrvis == false){
-//         var butt = document.createElement("BUTTON");
-//         butt.innerHTML = "Clear";
-//         butt.setAttribute("id", "clr");
-//         document.getElementById("info").appendChild(butt);
-//          clrvis = true;
-//     }
-//     document.getElementById("clr").addEventListener('click', function() {
-//         document.getElementById('bes').innerHTML = " ";
-//         butt.remove();
-//         clrvis = false;
-// }, false);
-// }, false);
-// document.getElementById('weap').addEventListener('click', function() {
-//     document.getElementById('wep').innerHTML = "Name  -   Type  -   Max Damage  -  Critical Chance<br>" +
-//     "Hollow Blade - Sword - 0 - 0<br>Sword of Thundership - Sword - 10 - 33<br>Excalibur - Sword - 40 - 80<br>" +
-//     "Sword of Hellfire - Sword - 50 - 60<br>Fury Blade - Sword - 40 - 70<br>Blade of Erroneous Fate - Sword - 90 - 10<br>" +
-//     "Stormforged Devil Cometh - Axe - 150 - 15<br>Thunderhammer of Ragnarok - Axe - 100 - 20<br>Blade of Legion - Sword - 40 - 40<br>Durendal - Sword - 100 - 100" +
-//     "<br>Steady Blade - Sword - 50 - 50 <br> Warhammer of Might - Axe - 80 - 40 <br> Blade of Godsfate - Sword - 10 - 100";
-//     if (clrvis == false){
-//         var butt = document.createElement("BUTTON");
-//         butt.innerHTML = "Clear";
-//         butt.setAttribute("id", "clr");
-//         document.getElementById("info").appendChild(butt);
-//          clrvis = true;
-//     }
-//     document.getElementById("clr").addEventListener('click', function() {
-//         document.getElementById('wep').innerHTML = " ";
-//         butt.remove();
-//         clrvis = false;
-//     }, false);
-// }, false);
+
 
 const textElement = document.getElementById("text-bar");
 const optionButtons = document.getElementById('choices');
@@ -351,20 +313,7 @@ function showText(textIndex) {
         swapCheck = false;
     }
 }
-backgrounds = [
-    "elroy" , "house_interior" , "forest_day" , "forest_night",
-    "pub_interior", "room_inn", "throne_room", "york_i", "york_e"]
-function toTrans(index){
-    document.getElementById(backgrounds[index]).style.display = "block";
-    console.log(backgrounds[index]);
-    for (var i = 0; i < backgrounds.length; i++){
-        console.log(i)
-        if (i != index){
-            document.getElementById(backgrounds[i]).style.display = "none";
-        }
-    }
 
-}
 function showOption(option) {
     return true;
 }
@@ -372,6 +321,7 @@ function showOption(option) {
 function selectOption(option) {
     const nextTextNodeID = option.nextText;
     if (nextTextNodeID <= 0) {
+        toTrans(15);
         return startGame();
     }
     showText(nextTextNodeID);
@@ -400,7 +350,7 @@ const storyPath = [
             {
                 text: "Forge another weapon",
                 nextText: 3
-            }], false),
+            }], false, 0),
     {
         id: 99,
         text: "Nordir has DIED, perhaps better choices won't seal your fate next time....",
@@ -412,7 +362,7 @@ const storyPath = [
         ]
     },
     new weaponNode(0, 3,
-        "Nordir foges a meer Hollow Blade. Nordir never was a great blacksmith.",
+        "Nordir foges a mere Hollow Blade. Nordir never was a great blacksmith.",
         [{
             text: "Continue",
             nextText: 4
@@ -426,7 +376,7 @@ const storyPath = [
             {
                 text: "Right",
                 nextText: 5
-            }], false, 0),
+            }], false, 1),
 
     new storyNode(5,
         "Nordir headed right, past the meadow. He walked for a couple hours before spotting a villiage in the " +
@@ -434,7 +384,7 @@ const storyPath = [
         [{
             text: "Go to Pub",
             nextText: 11
-        }], false, 2),
+        }], false, 3),
 
     new storyNode(6,
         "Nordir wanders to the left into the Forrest of Ferrar, he only travels 500 paces before he encounters a " +
@@ -459,7 +409,7 @@ const storyPath = [
         [{
             text: "Go to Pub",
             nextText: 11
-        }], false),
+        }], false, 3),
 
     new combatNode(8,
         player, ogre, "Nordir: \"Shut up and fight you ugly beast!\"",
@@ -491,7 +441,7 @@ const storyPath = [
                 text: "Go to pub",
                 nextText: 11
             }
-        ], true),
+        ], true, 3),
     new storyNode(11,
         "Nordir reaches Hampt and enters a pub called the Eastman Seven. " +
         "The rowdy aroma filled Nordir with wimbsy, his first adventure! " +
@@ -506,7 +456,7 @@ const storyPath = [
                 text: "Engage with the man",
                 nextText: 13
             }
-        ], false, 4),
+        ], false, 5),
     new storyNode(12,
         "Nordir ignores the stranger's advances. " +
         "Disturbed the stranger stands and freezes the roughhousing around Nordir. " +
@@ -618,7 +568,7 @@ const storyPath = [
                 text: "Flee",
                 nextText: 33
             }
-        ], false, 2),
+        ], false, 6),
 
     new storyNode(19,
         "Nordir begins his journey at once and heads down the lane towards York. " +
@@ -634,7 +584,7 @@ const storyPath = [
                 text: "Talk to the demonbeast",
                 nextText: 22
             }
-        ], false, 3),
+        ], false, 8),
 
     new weaponNode(randomFromArray(weapons), 20,
         "Nordir strikes down Heimindon with a final blow, upon his death, all of his spells reverse. " +
@@ -652,7 +602,7 @@ const storyPath = [
                 text: "Talk to the demonbeast",
                 nextText: 22
             }
-        ], true, ),
+        ], true, 4),
     new combatNode(21, player, demonbeast,
         "Nordir: \"I haven't much time for riddles Fuklar, and you haven't much time to live left.\"",
         [
@@ -664,7 +614,7 @@ const storyPath = [
                 text: "Live",
                 nextText: 23
             }
-        ], 3),
+        ], 8),
 
     new storyNode(22,
         "Nordir: \"I haven't much time for this beast, but I know your riddling ways. " +
@@ -679,7 +629,7 @@ const storyPath = [
                 text: "A well near a brook",
                 nextText: 25
             }
-        ], false, 3),
+        ], false, 8),
 
     new weaponNode(randomFromArray(weapons), 23,
         "Nordir slays the Demonbeast. As the soul withers, Nordir absorbs Fuklar's power and gains "+ weapons[weap].name +". " +
@@ -690,7 +640,7 @@ const storyPath = [
                 text: "Let's Go",
                 nextText: 39
             }
-        ], true, 8),
+        ], true, 10),
 
     new storyNode(24,
         "Fuklar: \"You are correcT manBeaST, BuT you are not done yeT.\" " +
@@ -755,7 +705,7 @@ const storyPath = [
                 text: "Let's go",
                 nextText: 39
             }
-        ], false, 8),
+        ], false, 10),
 
     new storyNode(29,
         "Fuklar: \"You have lost man beast! Die as you are!\" " +
@@ -763,7 +713,7 @@ const storyPath = [
         {
             text: "Restart",
             nextText: -1
-        }),
+        }, false),
 
     new storyNode(30,
         "Nordir, caught in a lie, begins to actually desire a wonderful night away with the women of the street. " +
@@ -782,7 +732,7 @@ const storyPath = [
                 text: "Let's talk",
                 nextText: 36
             }
-        ], false, 5),
+        ], false, 6),
 
     new weaponNode(randomFromArray(weapons), 31,
         "Nordir: \"Oh I'm afraid I interjected that in jest, I'm looking for a warlock called Heimindon the Fair, he is to guide me on a quest to slay Aant' El of Mont.\"\n Mysterious Stranger:"+
@@ -812,7 +762,7 @@ const storyPath = [
                 text: "Live",
                 nextText: 34
             }
-        ], 8),
+        ], 11),
 
     new storyNode(33,
         "Nordir jumps out of his skin and runs back to his dwelling in Elroy. " +
@@ -823,7 +773,7 @@ const storyPath = [
                 text: "Restart",
                 nextText: -1
             }
-        ], false),
+        ], false, 15),
 
     new weaponNode(randomFromArray(weapons), 34,
         "Nordir slays the last of the guards. In one of the guard's bags there is a glowing elixer. " +
@@ -834,7 +784,7 @@ const storyPath = [
                 text: "Lets go!",
                 nextText: 39
             }
-        ], true, ),
+        ], true, 10),
 
     new storyNode(35,
         "Nordir: \"I'll have it all beautiful.\" \nRose takes a small knife from her spruce undergarmet " +
@@ -909,7 +859,7 @@ const storyPath = [
                 text: "Left",
                 nextText: 41
             }
-        ], false, 7),
+        ], false, 12),
 
     new storyNode(40,
         "Nordir walks down the right hallway and encounters large doors. " +
@@ -924,7 +874,7 @@ const storyPath = [
                 text: "Sneak in",
                 nextText: 47
             }
-        ], false),
+        ], false, 12),
 
     new storyNode(41,
         "Nordir walks down the left hallway and encounters Aant' El laying in a pile of corpses. " +
@@ -943,7 +893,7 @@ const storyPath = [
                 text: "Doubt",
                 nextText: 43
             }
-        ], false, 6 ),
+        ], false, 14),
 
     new storyNode(42,
         "Nordir: \"I will fight with you against this greater threat. What shall be our first move?\" " +
@@ -1019,7 +969,7 @@ const storyPath = [
                 text: "win",
                 nextText: 100
             }
-        ], 6),
+        ], 14),
 
     new storyNode(47,
         "Using a small air duct, Nordir jumps up onto a ledge and shimmies onto a platform before crouching under an airduct. " +
@@ -1037,7 +987,7 @@ const storyPath = [
                 text: "Fight him",
                 nextText: 48
             }
-        ], false, 6),
+        ], false, 14),
 
     new combatNode(48, player, boss,
         "Nordir: \"I very much like my soul thanks, why dont we work on sawing off that head of yours, now.\"",
@@ -1076,7 +1026,7 @@ const storyPath = [
                 text: "Restart",
                 nextText: -1
             }
-        ], false),
+        ], false, 13),
 
     new storyNode(100, "Nordir makes a quick move and stabs Aant' El through the heart. \nNordir: \"You are done Aant' El,"+
     " the Montcore have no power here as long as I am here to protect it.\" "+
@@ -1091,8 +1041,103 @@ const storyPath = [
                 text: "Restart",
                 nextText: -1
             }
-        ], false)
+        ], false, 13)
 ];
+class pkg {
+    bTrans;
+    cTrans;
+    ctrans2;
+
+
+constructor (bTrans, cTrans, cTrans2) {
+    this.bTrans = bTrans;
+    this.cTrans = cTrans;
+    this.cTrans2 = cTrans2;
+
+}
+}
+const fullTransitions = [
+    new pkg("house_interior", "Nordir", "N"),
+    new pkg("elroy", "Nordir","N"),
+    new pkg("forest_day", "Nordir", "Ogre"),
+    new pkg("forest_day", "Nordir", "N"),
+    new pkg("pub_interior", "Nordir", "N"),
+    new pkg("pub_interior", "Nordir", "Heimindon"),
+    new pkg("room_inn", "Nordir", "N"),
+    new pkg("room_inn", "Nordir", "Rose"),
+    new pkg("forest_night", "Nordir", "Fuklar"),
+    new pkg("forest_night", "Nordir", "N"),
+    new pkg("york_e", "Nordir", "N"),
+    new pkg("york_e", "Nordir", "Guards"),
+    new pkg("york_i", "Nordir", "N"),
+    new pkg("throne_room", "Nordir","N"),
+    new pkg("throne_room", "Nordir", "Aant"),
+    new pkg("house_interior", "N", "N")]
+
+function toTrans(index){
+    if(fullTransitions[index].cTrans === "N"){
+        console.log(fullTransitions[index].cTrans);
+        for (var i = 0; i < fullTransitions.length; i++){
+            if (fullTransitions[i].cTrans !== "N"){
+        document.getElementById(fullTransitions[i].cTrans).style.display = "none";
+            }
+        }
+    }
+    if(fullTransitions[index].cTrans2 === "N"){
+        console.log(fullTransitions[index].cTrans2);
+        for (var i = 0; i < fullTransitions.length; i++){
+            if (fullTransitions[i].cTrans2 !== "N"){
+        document.getElementById(fullTransitions[i].cTrans2).style.display = "none";
+            }
+        }
+    }
+
+    console.log(fullTransitions[index].bTrans);
+    document.getElementById(fullTransitions[index].bTrans).style.display = "block";
+    console.log(fullTransitions[index].bTrans);
+    var current = fullTransitions[index].bTrans
+    for (var i = 0; i < fullTransitions.length; i++){
+        if (i != index && current != fullTransitions[i].bTrans){
+            document.getElementById(fullTransitions[i].bTrans).style.display = "none";
+        }
+    }
+    if (fullTransitions[index].cTrans !== "N"){
+        document.getElementById(fullTransitions[index].cTrans).style.display = "block";
+        console.log(fullTransitions[index].cTrans);
+        var current = fullTransitions[index].cTrans
+        for (var i = 0; i < fullTransitions.length; i++){
+            
+            if (i != index && current != fullTransitions[i].cTrans){
+                if (fullTransitions[i].cTrans !== "N"){
+                document.getElementById(fullTransitions[i].cTrans).style.display = "none";
+                }
+            }
+
+        }
+    }
+    if (fullTransitions[index].cTrans2 !== "N"){
+        document.getElementById(fullTransitions[index].cTrans2).style.display = "block";
+        console.log(fullTransitions[index].cTrans2);
+        var current = fullTransitions[index].cTrans2
+        for (var i = 0; i < fullTransitions.length; i++){
+            if (i != index && current != fullTransitions[i].cTrans2){
+                if (fullTransitions[i].cTrans2 !== "N"){ 
+                document.getElementById(fullTransitions[i].cTrans2).style.display = "none";
+                }
+            }
+        }
+    }
+}
+
+const wepwep = document.getElementById("weapon_ref");
+if(wepwep){
+wepwep.addEventListener('click', function(){
+    document.getElementById('wea').style.display = "block";
+});
+}
+/*document.getElementById("best").addEventListener("click", function() {
+    document.getElementById("bes").style.display = "block";
+  });*/
 
 startGame();
 

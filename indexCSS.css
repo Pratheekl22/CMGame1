@@ -19,6 +19,7 @@ html {
 }
 body {
     height: 100%;
+    z-index: 1;
 }
 
 
@@ -58,11 +59,13 @@ body {
 
 /*-------------------- DIALOG UI --------------------*/
 .dialog {
+    z-index: 3;
     /*display: none;*/
     text-align: center;
     align-self: center;
 }
 .bars {
+    z-index: 3;
     /* display: none; */
     width: 80%;
     margin-left: 10%;
@@ -117,22 +120,24 @@ body {
 
 /*-------------------- DIALOG UI --------------------*/
 .characters {
-    /* display: none;  */
+    z-index: 2;
     bottom: 0%;
     height: 80%;
     width: 15%;
-    background-color: yellow;
+    
 }
 #main-character {
-    left: 15%;
+    bottom: 10%;
+    left: 1%;
     position: absolute;
     
 }
 #other-character {
-    right: 15%;
-    position: absolute;
+    left: 50%;
+    bottom: 30%;
+    position: absolute; 
 }
-#main-character:hover {
+/*#main-character:hover {
     transition: 2s;
     transform: translateX(-100%);
     opacity: 0.0;
@@ -141,7 +146,39 @@ body {
     transition: 2s;
     transform: translateX(100%);
     opacity: 0.0;
+}*/
+#Heimindon{
+    display: none;
+    z-index: inherit;
+    
 }
+#Ogre{
+    display: none;
+    z-index: inherit;
+    
+}
+#Nordir{
+    display: none;
+    z-index: inherit;
+}
+#Aant{
+    display: none;
+    z-index: inherit;
+    
+}
+#Fuklar{
+    display: none;
+    z-index: inherit;
+}
+#Rose{
+    display: none;
+    z-index: inherit;
+}
+#Guards{
+    display: none;
+    z-index: inherit;
+}
+
 
 /*-------------------- CHOICES UI --------------------*/
 
@@ -162,6 +199,7 @@ body {
 
 }
 .choice {
+    z-index: 4;
     display: flex;
     /* display: none; */
     justify-content: center;
@@ -183,20 +221,17 @@ body {
 }
 
 .choice:hover {
-    background-color: orange;
+    background-color: rgb(5, 16, 82);
 }
 
 #choice-1:hover {
-    background-color: orange;
+    background-color: rgb(5, 16, 82);
 }
 #choice-2:hover {
-    background-color: orange;
+    background-color: rgb(5, 16, 82);
 }
 #choice-3:hover {
-    background-color: orange;
-}
-#exchange {
-    /* display: none; */
+    background-color: rgb(5, 16, 82);
 }
 
 /* --------------- BACKGROUNDS ------------------ */
@@ -228,3 +263,105 @@ body {
 #york_i{
     display: none;
 }
+
+/* ---------------- Reference ---------------------- */
+#bes{
+    background-color: #471212;
+    opacity: 0.9;
+    border-width: 3px;
+    border-style: solid;
+    border-color: black;
+    border-radius: 25px;
+    top:3%;
+
+        display: none;
+        position: absolute;
+        margin-left: auto;
+        margin-right: auto;
+        z-index: 10;
+        width: 20%;
+        color: white;
+        text-align: left;
+        line-height: 1.8;
+        font-family: 'DK Northumbria';
+        font-size: 20px;
+        padding-left: 4%;
+        padding-right: 4%;
+}
+#wea{
+    background-color: #471212;
+    text-align: center;
+    opacity: 0.9;
+    border-width: 3px;
+    border-style: solid;
+    border-color: black;
+    border-radius: 25px;
+    top: 3%;
+
+        display: none;
+        position: absolute;
+        margin-left: auto;
+        margin-right: auto;
+        z-index: 10;
+        width: 23%;
+        color: white;
+        text-align: left;
+        line-height: 1.8;
+        font-family: 'DK Northumbria';
+        font-size: 16px;
+        padding-left: 4%;
+        padding-right: 4%;
+        left: 30%;
+}
+#weapon_ref{
+    background-color: #471212;
+    opacity: 0.9;
+    border-width: 3px;
+    border-style: solid;
+    border-color: black;
+    border-radius: 25px;
+    text-align: center;
+    display: block;
+    position: absolute;
+    margin-right: 10%;
+    margin-left: 90%;
+    z-index: 10;
+    color: white;
+    text-align: left;
+    line-height: 1.8;
+    font-family: 'DK Northumbria';
+    font-size: 16px;
+    padding-left: 1%;
+    padding-right: 1%;
+
+
+
+}
+#best{
+    background-color: #471212;
+    opacity: 0.9;
+    border-width: 3px;
+    border-style: solid;
+    border-color: black;
+    border-radius: 25px;
+    text-align: center;
+    display: block;
+    position: absolute;
+    margin-right: 10%;
+    margin-left: 82%;
+    z-index: 10;
+    color: white;
+    text-align: left;
+    line-height: 1.8;
+    font-family: 'DK Northumbria';
+    font-size: 16px;
+    padding-left: 1%;
+    padding-right: 1%;
+}
+#weapon_ref:hover {
+    background-color: rgb(107, 10, 15);
+}
+#best:hover {
+    background-color: rgb(107, 10, 15);
+}
+
