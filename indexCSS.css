@@ -11,6 +11,7 @@ CSS: index.html
 
 html {
     height: 100%;
+    overflow: hidden;
     background: url("template.jpg") no-repeat center center fixed;
     /* background: url("title-background.png") no-repeat center center fixed; */
     background-size: cover;
@@ -193,4 +194,26 @@ body {
 }
 #exchange {
     /* display: none; */
+}
+
+/*-------------------- YOU DIED/VICTORY UI --------------------*/
+.result-screen {
+    /* display: none; */
+}
+#result {
+    height: 100%;
+    width: 100%;
+    background-color: black;/*#210003;*/
+    opacity: 0.95;
+    align-content: center;
+}
+#message {
+    height: auto;
+    width: 100%;
+    padding-top: 10%;
+    color: red;/*rgb(255, 228, 72);*/
+    font-family: 'DK Northumbria';
+    font-size: 8vw;
+    position: absolute;
+    text-align: center;
 }
