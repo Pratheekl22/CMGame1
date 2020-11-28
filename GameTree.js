@@ -409,7 +409,7 @@ const storyPath = [
         [{
             text: "Go to Pub",
             nextText: 11
-        }], false, 3),
+        }], false, ),
 
     new combatNode(8,
         player, ogre, "Nordir: \"Shut up and fight you ugly beast!\"",
