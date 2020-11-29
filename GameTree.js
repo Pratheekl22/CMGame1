@@ -370,7 +370,7 @@ const storyPath = [
             nextText: 4
         }], true, 1),
     new storyNode(4,
-        "\"Which way should I go?\" Nordir thinks to himeslf.",
+        "\"Which way should I go?\" Nordir thinks to himeself.",
         [{
             text: "Left",
             nextText: 6
@@ -411,7 +411,7 @@ const storyPath = [
         [{
             text: "Go to Pub",
             nextText: 11
-        }], false, 3),
+        }], false),
 
     new combatNode(8,
         player, ogre, "Nordir: \"Shut up and fight you ugly beast!\"",
@@ -432,7 +432,7 @@ const storyPath = [
                 nextText: -1
             }
 
-        ], false),
+        ], false, 17),
     new weaponNode(randomFromArray(weapons), 10,
         "The Ogre takes his last breath and perishes. " +
         ". Nordir walks into the Ogre's dwelling to find a chest. Inside there's a " + weapons[weap].name +
@@ -669,7 +669,7 @@ const storyPath = [
                 text: "Restart",
                 nextText: -1
             }
-        ], false),
+        ], false, 17),
 
     new storyNode(26,
         "Fuklar: \"Ayee you are correct again.... One final test manBeast.\" " +
@@ -695,7 +695,7 @@ const storyPath = [
                 text: "Restart",
                 nextText: -1
             }
-        ], false),
+        ], false, 17),
 
     new storyNode(28,
         "Fuklar: \"Aye, you are a cunning warrior and a keen mind, you shall pass Nordir of Elroy." +
@@ -715,7 +715,7 @@ const storyPath = [
         {
             text: "Restart",
             nextText: -1
-        }, false),
+        }, false, 17),
 
     new storyNode(30,
         "Nordir, caught in a lie, begins to actually desire a wonderful night away with the women of the street. " +
@@ -775,7 +775,7 @@ const storyPath = [
                 text: "Restart",
                 nextText: -1
             }
-        ], false, 15),
+        ], false, 17),
 
     new weaponNode(randomFromArray(weapons), 34,
         "Nordir slays the last of the guards. In one of the guard's bags there is a glowing elixer. " +
@@ -800,7 +800,7 @@ const storyPath = [
                 text: "Restart",
                 nextText: -1
             }
-        ], false, 6),
+        ], false, 17),
 
     new storyNode(36,
         "Nordir: \"I'm very happy your here, but I shant loose my chivalry with a lady of the night." +
@@ -844,10 +844,10 @@ const storyPath = [
                 text: "Restart",
                 nextText: -1
             }
-        ], false),
+        ], false, 17),
 
     new storyNode(39,
-        "Nordir looks around the grungy castle. The ground reeks of deadmeat and the walls speaks of abuse. " +
+        "Nordir looks around the grungy castle. The ground reeks of deadmeat and the walls speak of abuse. " +
         "The Old Kingdom of York has seen better days. Nordir starts down the main corridor but he does not " +
         "advance too quickly as he decides its better to keep a low profile. The less trouble the better. " +
         "Nordir reaches a fork in the hall with two corridor options. Funny the decison that started his quest begins " +
@@ -910,7 +910,7 @@ const storyPath = [
                 text: "Restart",
                 nextText: -1
             }
-        ], false),
+        ], false, 17),
 
     new storyNode(43,
         "Nordir: \"I trust not in your idle game as much as I fail to trust in your ghostly figure Aant' El.\" " +
@@ -952,7 +952,7 @@ const storyPath = [
                 text: "restart",
                 nextText: -1
             }
-        ], false),
+        ], false, 17),
 
     new combatNode(46, player, boss,
         "Nordir slams open the door with his boot. Aant' El of Mont sits on a throne of corpses. " +
@@ -1012,7 +1012,7 @@ const storyPath = [
                 text: "Restart",
                 nextText: -1
             }
-        ], false),
+        ], false, 17),
 
     new storyNode(98,
         "Nordir makes a quick move and stabs Aant' El through the heart. \nNordir: \"You are done Aant' El,"+
@@ -1028,7 +1028,7 @@ const storyPath = [
                 text: "Restart",
                 nextText: -1
             }
-        ], false, 14),
+        ], false, 16),
 
     new storyNode(100, "Nordir makes a quick move and stabs Aant' El through the heart. \nNordir: \"You are done Aant' El,"+
     " the Montcore have no power here as long as I am here to protect it.\" "+
@@ -1043,7 +1043,7 @@ const storyPath = [
                 text: "Restart",
                 nextText: -1
             }
-        ], false, 14)
+        ], false, 16)
 ];
 class pkg {
     bTrans;
@@ -1074,7 +1074,10 @@ const fullTransitions = [
     new pkg("york_i", "Nordir", "N"),
     new pkg("throne_room", "Nordir","Aant"),
     new pkg("throne_room", "Nordir", "N"),
-    new pkg("house_interior", "N", "N")]
+    new pkg("house_interior", "N", "N"),
+    new pkg("V", "N", "N"),
+    new pkg("D","N","N")
+]
 
 function toTrans(index){
     if(fullTransitions[index].cTrans === "N"){
@@ -1088,9 +1091,6 @@ function toTrans(index){
     }
     if(fullTransitions[index].cTrans2 === "N"){
         console.log(fullTransitions[index].cTrans2);
-            if(index !== 0 && index !== 1 && index !== 12 && index !== 15){
-                document.getElementById(fullTransitions[index-1].cTrans2).className ='classLeftOut';
-                }
         }
         for (var i = 0; i < fullTransitions.length; i++){
             if (fullTransitions[i].cTrans2 !== "N"){
@@ -1104,6 +1104,7 @@ function toTrans(index){
     var current = fullTransitions[index].bTrans
     for (var i = 0; i < fullTransitions.length; i++){
         if (i != index && current != fullTransitions[i].bTrans){
+            console.log(fullTransitions[i].bTrans)
             document.getElementById(fullTransitions[i].bTrans).style.display = "none";
         }
     }
@@ -1135,6 +1136,10 @@ function toTrans(index){
             }
         }
     }
+    if (fullTransitions[index].bTrans === "V"){
+        document.getElementsByClassName("results-screen")[0].style.display = "none"
+        document.getElementById("message").innerHTML = "Victory"
+    }
 }
 
 var timesclick = 0;
@@ -1164,6 +1169,7 @@ function openBest() {
 document.getElementsByClassName("title-screen")[0].style.display = "block";
     document.getElementsByClassName("title-screen")[1].style.display = "block";
         document.getElementById("start").addEventListener('click', function(){
+        document.getElementById("screen1").style.display = "block";
         document.getElementsByClassName("title-screen")[0].style.display = "none";
         document.getElementsByClassName("title-screen")[1].style.display = "none";
         startGame();
