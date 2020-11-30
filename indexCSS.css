@@ -135,16 +135,46 @@ body {
     bottom: 30%;
     position: absolute; 
 }
-/*#main-character:hover {
-    transition: 2s;
-    transform: translateX(-100%);
-    opacity: 0.0;
+@keyframes interact {
+    0%{
+        transform: inherit;
+    }
+    5%{
+        transform: translate(15px,10px);
+    
+    }
+    95%{
+        transform: translate(15px,10px);
+    }
+    100%{
+        transform: inherit;
+    }
+}
+@keyframes interact2 {
+    0%{
+        transform: inherit;
+    }
+    5%{
+        transform: translate(-15px,10px);
+    
+    }
+    95%{
+        transform: translate(-15px,10px);
+    }
+    100%{
+        transform: inherit;
+    }
+}
+#main-character:hover {
+    animation-name: interact;
+    animation-duration: 10s;
+   
 }
 #other-character:hover {
-    transition: 2s;
-    transform: translateX(100%);
-    opacity: 0.0;
-}*/
+    animation-name: interact2;
+    animation-duration: 10s;
+    
+}
 #Heimindon{
     display: none;
     z-index: inherit;

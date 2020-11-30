@@ -1,3 +1,4 @@
+//Class which defines weapon objects and attributes
 class weapon {
     name;
     type;
@@ -6,6 +7,7 @@ class weapon {
     smite;
     trans;
 
+    //Array of weapon types
     typeArray = ["Sword", "Bow", "Axe"];
 
     constructor(name, type, damage, critChance, smite, trans) {

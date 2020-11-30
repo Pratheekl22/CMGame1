@@ -1,9 +1,11 @@
+//Defines node which starts a combat encounter
 class combatNode {
     id;
     player;
     enemy;
     text;
     goNext;
+    trans;
 
     constructor(id, player, enemy, text, goNext, trans) {
         this.id = id;

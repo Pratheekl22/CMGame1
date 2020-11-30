@@ -1,3 +1,4 @@
+//Class that defines character objects and their attributes
 class character {
     name;
     type;
@@ -14,7 +15,7 @@ class character {
         this.attacks = attacks;
         this.health = health;
     }
-
+    //Unimplemented code which will be implemented later
     updatePersonality(anger, charisma) {
         this.personality.increaseAnger(anger);
         this.personality.increaseCharisma(charisma);

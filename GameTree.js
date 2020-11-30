@@ -142,7 +142,6 @@ function changeWeapon(oldWeapon, newWeapon) {
         textElement.innerText = textElement.innerText.slice(0, textElement.innerText.indexOf("\nNordir swapped to the"));
     }
     textElement.innerText += " \nNordir swapped to the " + player.weapon.name;
-    
     scrollBot();
     console.log(player.weapon);
 }
@@ -197,62 +196,68 @@ function attackMove(attack, enemy, playerWin, enemyWin) {
         textElement.innerText += " \nNordir attempts to launch a brutal strike at the enemy";
         var textL = document.getElementById("text-bar");
         textL.scrollTop = textL.scrollHeight;
+        //Rolls to determine if brutality is success
         let esc = Math.floor(Math.random() * 100);
         if (esc <= 20) {
             textElement.innerText += " \nNordir's attempt is successful";
-            var textL = document.getElementById("text-bar");
-            textL.scrollTop = textL.scrollHeight;
+            scrollBot();
             sleep(5000)
             player.health = 250;
             dodgeCount = 0;
             return showText(playerWin);
         } else {
             textElement.innerText += " \nNordir's attempt fails";
-            var textL = document.getElementById("text-bar");
-            textL.scrollTop = textL.scrollHeight;
+            scrollBot();
             sleep(5000)
             return showText(enemyWin);
         }
     }
-
+    //Run if the enemy dies
     if (enemy.health <= 0) {
         textElement.innerText += " \nNordir has slain the enemy";
-        var textL = document.getElementById("text-bar");
-        textL.scrollTop = textL.scrollHeight;
+        scrollBot();
         sleep(5000)
         dodgeCount = 0;
         player.health = 250;
         return showText(playerWin);
+    //Begins enemy attack
     } else {
+        //Kills Nordir if he's dodged 5 attacks
         if (dodgeCount === 5) {
             textElement.innerText += " \nThe enemy predicts your move and strikes you with a mighty blow";
-            var textL = document.getElementById("text-bar");
-            textL.scrollTop = textL.scrollHeight;
+            scrollBot();
             player.health = 0;
         }
+        //Determines enemy attack
         let enemyAttack = enemy.attacks[Math.floor(Math.random() * enemy.attacks.length)];
+        //Prints enemy attack
         textElement.innerText += " \n" + enemyAttack.text;
+        //Run if Nordir doesn't dodge
         if (!dodge) {
             let damage = enemyAttack.damage;
+            //Determines if enemy attacks critically
             let crit = Math.floor(Math.random() * 100);
+            //Run if crit is rolled
             if (crit <= enemy.weapon.critChance) {
                 damage *= 2;
                 textElement.innerText += " \nThe enemy's strike hits critically";
-                var textL = document.getElementById("text-bar");
-                textL.scrollTop = textL.scrollHeight;
+                scrollBot();
             }
+            //Subtracts damage from Nordir's health
             player.health -= damage;
             console.log(enemyAttack);
         }
+        //Prints Nordir's health
         textElement.innerText += " \nNordir's Health: " + player.health;
-        var textL = document.getElementById("text-bar");
-        textL.scrollTop = textL.scrollHeight;
-
+        scrollBot();
+        //Run if enemy kills Nordir
         if (player.health <= 0) {
             textElement.innerText += " \nNordir has been slain";
-            var textL = document.getElementById("text-bar");
-            textL.scrollTop = textL.scrollHeight;
+            scrollBot();
             sleep(5000)
+            //Resets Nordir's weapon
+            player.weapon = new weapon("Sword of Thundership", "Sword", 40, 40, false, 12);
+            player.health = 200;
             return showText(enemyWin);
         }
     }
@@ -266,38 +271,45 @@ function sleep(milliseconds) {
         }
     }
 }
-
+//Begins combat and intializes the interface
 function runCombat(currentNode) {
     textElement.innerText += "\nNordir faces " + currentNode.enemy.name;
+    //Constructs buttons for interface
     currentNode.player.attacks.forEach(attack => {
         const button = document.createElement('button');
         button.innerText = attack.text;
         button.classList.add("choice");
+        //Adds event listener on each button
         button.addEventListener('click', () => attackMove(attack, currentNode.enemy,
             currentNode.goNext[1].nextText, currentNode.goNext[0].nextText));
         optionButtons.appendChild(button);
     })
 }
-
+//Driver method which shows text
 function showText(textIndex) {
-    
+    //Determines the current node and sets it
     const currentNode = storyPath.find(storyNode => storyNode.id === textIndex)
     textElement.innerText = currentNode.text;
+    //Checks if the node fires an animation
     if (Number.isInteger(currentNode.trans)){
         toTrans(currentNode.trans);
     }
+    //Makes sure scrollTop is set to 0 after combat
     var textL = document.getElementById("text-bar");
     textL.scrollTop = 0;
+    //Removes all existing buttons
     while (optionButtons.firstChild) {
         optionButtons.removeChild(optionButtons.firstChild);
     }
-
+    //Determines if node runs combat
     if (currentNode instanceof combatNode) {
         runCombat(currentNode);
     } else {
         let swapCheck = false;
         currentNode.options.forEach(option => {
+            //Determines if node allows for a weapon switch
             if (currentNode instanceof weaponNode && swapCheck === false) {
+                //Creates button for weapon exchange
                 const button = document.createElement('button');
                 button.innerText = "Exchange Your Weapon";
                 let oldWeapon = player.weapon;
@@ -306,7 +318,7 @@ function showText(textIndex) {
                 optionButtons.appendChild(button);
                 swapCheck = true;
             }
-
+            //Shows buttons
             if (showOption(option)) {
                 const button = document.createElement('button');
                 button.innerText = option.text;
@@ -319,22 +331,23 @@ function showText(textIndex) {
         swapCheck = false;
     }
 }
-
+//Helper method
 function showOption(option) {
     return true;
 }
-
 function selectOption(option) {
     const nextTextNodeID = option.nextText;
+    //Restarts game when die or victory
     if (nextTextNodeID <= 0) {
             toTrans(15);
             return startGame();
        
         
     }
+    //Continues text to next node
     showText(nextTextNodeID);
 }
-
+//Array of Nodes of many kinds
 const storyPath = [
     new storyNode(1,
         "Nordir is awoken after the funeral, he walks through his dwelling to find his father's chair, there's a letter there addressed to him.",
@@ -1051,19 +1064,22 @@ const storyPath = [
             }
         ], false, 16)
 ];
+//Class of strings which designate what ID is being edited
 class pkg {
+    //Background Transition
     bTrans;
+    //Right Character Transition
     cTrans;
+    //Left Character Transition
     ctrans2;
-
-
-constructor (bTrans, cTrans, cTrans2) {
+    
+    constructor (bTrans, cTrans, cTrans2) {
     this.bTrans = bTrans;
     this.cTrans = cTrans;
     this.cTrans2 = cTrans2;
-
+    }
 }
-}
+//Array full of Transition packages
 const fullTransitions = [
     new pkg("house_interior", "Nordir", "N"),
     new pkg("elroy", "Nordir","N"),
@@ -1084,72 +1100,81 @@ const fullTransitions = [
     new pkg("V", "N", "N"),
     new pkg("D","N","N")
 ]
-
+//Method that takes in an index from a StoryNode and executes it
 function toTrans(index){
+    //Removes character on left if run
     if(fullTransitions[index].cTrans === "N"){
         console.log(fullTransitions[index].cTrans);
+        //Removes all character on left if run for clean up
         for (var i = 0; i < fullTransitions.length; i++){
+            //Makes sure ID exists
             if (fullTransitions[i].cTrans !== "N"){
-                
-        document.getElementById(fullTransitions[i].cTrans).style.display = "none";
+                document.getElementById(fullTransitions[i].cTrans).style.display = "none";
             }
         }
     }
+    //Removes character on right if run
     if(fullTransitions[index].cTrans2 === "N"){
         console.log(fullTransitions[index].cTrans2);
-        }
+        //Removes of characters on the right for clean up
         for (var i = 0; i < fullTransitions.length; i++){
+            //Makes sure ID exists
             if (fullTransitions[i].cTrans2 !== "N"){
         document.getElementById(fullTransitions[i].cTrans2).style.display = "none";
             }
         }
-
+    }
     console.log(fullTransitions[index].bTrans);
+    //Shows Background Transition
     document.getElementById(fullTransitions[index].bTrans).style.display = "block";
-    console.log(fullTransitions[index].bTrans);
     var current = fullTransitions[index].bTrans
+    //Removes all background transitions for cleanup
     for (var i = 0; i < fullTransitions.length; i++){
+        //Doesn't remove current background
         if (i != index && current != fullTransitions[i].bTrans){
-            console.log(fullTransitions[i].bTrans)
             document.getElementById(fullTransitions[i].bTrans).style.display = "none";
         }
     }
+    //Shows character on the left transition
     if (fullTransitions[index].cTrans !== "N"){
         document.getElementById(fullTransitions[index].cTrans).style.display = "block";
+        //Shows animation
         document.getElementById(fullTransitions[index].cTrans).className ='classLeftIn';
         console.log(fullTransitions[index].cTrans);
         var current = fullTransitions[index].cTrans
+        //Removes all character on left if run for clean up
         for (var i = 0; i < fullTransitions.length; i++){
-            
+            //Doesn't remove current character
             if (i != index && current != fullTransitions[i].cTrans){
+                //Makes sure character exists
                 if (fullTransitions[i].cTrans !== "N"){
                 document.getElementById(fullTransitions[i].cTrans).style.display = "none";
                 }
             }
-
         }
     }
+    //Shows charater on the right transition
     if (fullTransitions[index].cTrans2 !== "N"){
         document.getElementById(fullTransitions[index].cTrans2).style.display = "block";
+        //Shows animation
         document.getElementById(fullTransitions[index].cTrans2).className ='classRightIn';
         console.log(fullTransitions[index].cTrans2);
         var current = fullTransitions[index].cTrans2
+        //Removes all character on right if run for clean up
         for (var i = 0; i < fullTransitions.length; i++){
+            //Doesn't remove current character
             if (i != index && current != fullTransitions[i].cTrans2){
+                //Makes sure character exists
                 if (fullTransitions[i].cTrans2 !== "N"){ 
                 document.getElementById(fullTransitions[i].cTrans2).style.display = "none";
                 }
             }
         }
     }
-    if (fullTransitions[index].bTrans === "V"){
-        document.getElementsByClassName("results-screen")[0].style.display = "none"
-        document.getElementById("message").innerHTML = "Victory"
-    }
 }
-
 var timesclick = 0;
 var timesclick2 = 0;
+//Function to open weapon box
 function openWeap() {
     if (timesclick >= 1){
         document.getElementById("wea").style.display = "none";
@@ -1161,6 +1186,7 @@ function openWeap() {
         
     }
 }
+//Function to open Bestiary box
 function openBest() {
     if (timesclick2 >= 1){
         document.getElementById("bes").style.display = "none";
@@ -1172,106 +1198,71 @@ function openBest() {
         
     }
 }
+//Function that shows weapon animation for indexed weapon
 function toWeapon(index) {
     switch (index){
         case 0: 
-        document.getElementById("hollow").className = "classWeaponOut";
-        setTimeout(function(){ 
-        document.getElementById("hollow").classList.remove("classWeaponOut");
-        console.log("done");
-         }, 2000);
-        break;
-        case 1: 
-        console.log("done");
-            document.getElementById("Ex").className = "classWeaponOut";
-            setTimeout(function(){ 
-                document.getElementById("Ex").classList.remove("classWeaponOut")
-                 }, 2000);
-
-        break;
-        case 2: 
-        console.log("done");
-            document.getElementById("Hellfire").className = "classWeaponOut";
-            setTimeout(function(){ 
-                document.getElementById("Hellfire").classList.remove("classWeaponOut")
-                 }, 2000);
-        break;
-        case 3: 
-        console.log("done");
-            document.getElementById("Legion").className = "classWeaponOut";
-            setTimeout(function(){ 
-                document.getElementById("Legion").classList.remove("classWeaponOut")
-                 }, 2000);
-        break;
-        case 4: 
-            document.getElementById("Fury").className = "classWeaponOut";
-            setTimeout(function(){ 
-                document.getElementById("Fury").classList.remove("classWeaponOut")
-                 }, 2000);
-        break;
-        case 5: 
-            document.getElementById("Fate").className = "classWeaponOut";
-            setTimeout(function(){ 
-                document.getElementById("Fate").classList.remove("classWeaponOut")
-                 }, 2000);
-        break;
-        case 6: 
-            document.getElementById("Steady").className = "classWeaponOut";
-            setTimeout(function(){ 
-                document.getElementById("Steady").classList.remove("classWeaponOut")
-                 }, 2000);
-        break;
-        case 7: 
-            document.getElementById("Might").className = "classWeaponOut";
-            setTimeout(function(){ 
-                document.getElementById("Might").classList.remove("classWeaponOut")
-                 }, 2000);
-        break;
-        case 8: 
-            document.getElementById("Durendal").className = "classWeaponOut";
-            setTimeout(function(){ 
-                document.getElementById("Durendal").classList.remove("classWeaponOut")
-                 }, 2000);
-        break;
-        case 9: 
-            document.getElementById("Ragnarok").className = "classWeaponOut";
-            setTimeout(function(){ 
-                document.getElementById("Ragnarok").classList.remove("classWeaponOut")
-                 }, 2000);
-        break;
-        case 10:
-            document.getElementById("Cometh").className = "classWeaponOut";
-            setTimeout(function(){ 
-                document.getElementById("Cometh").classList.remove("classWeaponOut")
-                 }, 2000);
-        break;
-        case 11: 
-            document.getElementById("Godsfate").className = "classWeaponOut";
-            setTimeout(function(){ 
-                document.getElementById("Godsfate").classList.remove("classWeaponOut")
-                 }, 2000);
-        break;
-        case 12:
-            console.log("done");
-            document.getElementById("Thundership").className = "classWeaponOut";
-            setTimeout(function(){ 
-                document.getElementById("Thundership").classList.remove("classWeaponOut")
-                 }, 2000);
+            weaponAnimation("hollow");
             break;
-        
-
+        case 1: 
+            weaponAnimation("Ex");
+            break;
+        case 2: 
+            weaponAnimation("Hellfire");
+            break;
+        case 3: 
+            weaponAnimation("Legion");
+            break;
+        case 4: 
+            weaponAnimation("Fury");
+            break;
+        case 5: 
+            weaponAnimation("Fate");
+            break;
+        case 6: 
+            weaponAnimation("Steady");
+            break;
+        case 7: 
+            weaponAnimation("Might");
+            break;
+        case 8: 
+            weaponAnimation("Durendal");
+            break;
+        case 9: 
+            weaponAnimation("Ragnarok");
+            break;
+        case 10:
+            weaponAnimation("Cometh");
+            break;
+        case 11: 
+            weaponAnimation("Godsfate");
+            break;
+        case 12:
+            weaponAnimation("Thundership");
+            break;
     }
     
 
 }
+//Runs animation and removes class
+function weaponAnimation(weaponName){
+    //Executes animation
+    document.getElementById(weaponName).className = "classWeaponOut";
+    //resets animation after 2 seconds
+    setTimeout(function(){ 
+        document.getElementById(weaponName).classList.remove("classWeaponOut")
+    }, 2000);
+}
+//Shows opening title screen
 document.getElementsByClassName("title-screen")[0].style.display = "block";
-    document.getElementsByClassName("title-screen")[1].style.display = "block";
-        document.getElementById("start").addEventListener('click', function(){
-        document.getElementById("screen1").style.display = "block";
-        document.getElementsByClassName("title-screen")[0].style.display = "none";
-        document.getElementsByClassName("title-screen")[1].style.display = "none";
-        startGame();
-        });
+document.getElementsByClassName("title-screen")[1].style.display = "block";
+//Begins game when clicked
+document.getElementById("start").addEventListener('click', function(){
+    document.getElementById("screen1").style.display = "block";
+    document.getElementsByClassName("title-screen")[0].style.display = "none";
+    document.getElementsByClassName("title-screen")[1].style.display = "none";
+    startGame();
+    });
 
 
 

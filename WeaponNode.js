@@ -1,3 +1,4 @@
+//Defines a node which gives Nordir a weapon
 class weaponNode {
     id;
     text;

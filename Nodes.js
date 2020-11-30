@@ -1,3 +1,4 @@
+//Defines a node which pushes the story
 class storyNode {
     id;
     text;
