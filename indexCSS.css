@@ -269,6 +269,9 @@ body {
 #D{
     display: none;
 }
+#screen1{
+    display: none;
+}
 
 /* ---------------- Reference ---------------------- */
 #bes{
@@ -447,29 +450,119 @@ body {
     animation-duration: 1s;
 }
 
-/*-------------------- YOU DIED/VICTORY UI --------------------*/
-#result-screen {
-    display: none;
-    z-index: 30;
+/*-------------------- WEAPONS --------------------*/
+@keyframes weaponOut{
+    0%{
+        z-index: 50;
+        opacity: 100%;
+    } 10%{
+        opacity: 100%;
+    }
+    99%{
+        opacity: 0%;
+        z-index: 50;
+    } 100%{
+        opacity: 0%;
+        z-index: inherit;
+        
+    }
 }
-#result {
-    height: 100%;
-    width: 100%;
-    background-color: black;/*#210003;*/
-    opacity: 0.95;
-    align-content: center;
+.classWeaponOut{
+    animation-name: weaponOut;
+    animation-duration: 2s;
+    
 }
-#message {
-    height: auto;
-    width: 100%;
-    padding-top: 10%;
-    color: red;/*rgb(255, 228, 72);*/
-    font-family: 'DK Northumbria';
-    font-size: 8vw;
+#Thundership{
+    z-index: -5;
+    left: 35%;
+    top: 12%;
     position: absolute;
-    text-align: center;
+    display: block;
+}
+#hollow{
+    z-index: -5;
+    left: 35%;
+    top: 12%;
+
+    position: absolute;
+    display: block;
+}
+#Ex{
+    z-index: -5;
+    left: 35%;
+    top: 12%;
+    position: absolute;
+    display: block;
+}
+#Hellfire{
+    z-index: -5;
+    left: 35%;
+    top: 12%;
+    position: absolute;
+    display: block;
+}
+#Legion{
+    z-index: -5;
+    left: 35%;
+    top: 12%;
+    position: absolute;
+    display: block;
+}
+#Fury{
+    z-index: -5;
+    left: 35%;
+    top: 12%;
+    position: absolute;
+    display: block;
+}
+#Fate{
+    z-index: -5;
+    left: 35%;
+    top: 12%;
+    position: absolute;
+    display: block;
+}
+#Steady{
+    z-index: -5;
+    left: 35%;
+    top: 12%;
+    position: absolute;
+    display: block;
+}
+#Might{
+    z-index: -5;
+    left: 35%;
+    top: 12%;
+    position: absolute;
+    display: block;
+}
+#Durendal{
+    z-index: -5;
+    left: 35%;
+    top: 12%;
+    position: absolute;
+    display: block;
+}
+#Ragnarok{
+    z-index: -5;
+    left: 35%;
+    top: 12%;
+    position: absolute;
+    display: block;
+}
+#Cometh{
+    z-index: -5;
+    left: 35%;
+    top: 12%;
+    position: absolute;
+    display: block;
+}
+#Godsfate{
+    z-index: -5;
+    left: 35%;
+    top: 12%;
+    position: absolute;
+    display: block;
 }
 
-#screen1{
-    display: none;
-}
+

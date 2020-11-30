@@ -1,12 +1,12 @@
-
-
+//Declaration of HTML
 const textElement = document.getElementById("text-bar");
 const optionButtons = document.getElementById('choices');
 let state = {};
+//Unimplemented personality feature here to be implemented later
 let playerPersonality = new personality("Good", 50, 50)
-//let player = new character("Jim", "Player", playerPersonality, null);
+//Player object initialization
 let player = new character("Nordir", "Player", playerPersonality,
-    new weapon("Sword of Thundership", "Sword", 40, 40, false),
+    new weapon("Sword of Thundership", "Sword", 40, 40, false, 12),
     [{
         text: "Strike",
         damage: 40,
@@ -16,7 +16,7 @@ let player = new character("Nordir", "Player", playerPersonality,
     },{
         text: "Brutality"
     }],200);
-
+//Enemey Initialization
 let ogre = new character("Ogre", "Monster", null,
     new weapon("Mace of Macedom", "Mace", 30, 0, false),
     [{
@@ -31,7 +31,7 @@ let ogre = new character("Ogre", "Monster", null,
         text: "The ogre throws out a devastating punch",
         damage: 20,
         crit: 0
-    }], 300);
+    }], 600);
 
 let wizard = new character("Heimindon the Fair", "NPC", null,
     new weapon("Staff of Power", "Staff", 50, 10, false),
@@ -47,7 +47,7 @@ let wizard = new character("Heimindon the Fair", "NPC", null,
         text: "Heimindon bends the air currents around you",
         damage: 20,
         crit: 0
-    }], 250);
+    }], 300);
 
 let demonbeast = new character("Fuklar", "Monster", null,
     new weapon("Claws of the Hunter", "Demon claw", 40, 90, true),
@@ -63,7 +63,7 @@ let demonbeast = new character("Fuklar", "Monster", null,
         text: "The demonbeast calls to the shadows to strike you down",
         damage: 100,
         crit: 0
-    }], 150);
+    }], 300);
 
 let guard = new character("Montcore Guards", "Enemy", null,
     new weapon("Spear of the Servant", "Spear", 80, 0, false),
@@ -79,7 +79,7 @@ let guard = new character("Montcore Guards", "Enemy", null,
         text: "The guard attempts to bash you with his shield",
         damage: 100,
         crit: 0
-    }], 300);
+    }], 400);
 
 let boss = new character("Aant' El of Mont", "Boss", null,
     new weapon("The soul eater", "Legendary blade", 60, 60, false),
@@ -95,69 +95,76 @@ let boss = new character("Aant' El of Mont", "Boss", null,
         text: "Aant awakens your most evil desires",
         damage: 70,
         crit: 50
-    }], 300);
-
+    }], 700);
+//Weapon Array with weapon initialization
 const weapons = [
-    new weapon("Hollow Blade", "Sword", 0, 0, false),
-    new weapon("Excalibur", "Sword", 40, 80, true),
-    new weapon("Sword of Hellfire", "Sword", 50, 60, true),
-    new weapon("Blade of Legion", "Sword", 40, 40, true),
-    new weapon("Fury Blade", "Sword", 40, 70, true),
-    new weapon("Blade of Erroneous Fate", "Sword", 90, 10, true),
-    new weapon("Steady Blade", "Sword", 50, 50, true),
-    new weapon("Warhammer of Might", "Axe", 80, 40, true),
-    new weapon("Durendal", "Sword", 100, 100, true),
-    new weapon("Thunderhammer of Ragnarok", "Axe", 100, 20, true),
-    new weapon("Stormforged Devil Cometh", "Axe", 150, 15, true),
-    new weapon("Blade of Godsfate", "Sword", 10, 100, true),
+    new weapon("Hollow Blade", "Sword", 0, 0, false, 0),
+    new weapon("Excalibur", "Sword", 40, 80, true, 1),
+    new weapon("Sword of Hellfire", "Sword", 50, 60, true, 2),
+    new weapon("Blade of Legion", "Sword", 40, 40, true, 3),
+    new weapon("Fury Blade", "Sword", 40, 70, true, 4),
+    new weapon("Blade of Erroneous Fate", "Sword", 90, 10, true, 5),
+    new weapon("Steady Blade", "Sword", 50, 50, true, 6),
+    new weapon("Warhammer of Might", "Axe", 80, 40, true, 7),
+    new weapon("Durendal", "Sword", 100, 100, true, 8),
+    new weapon("Thunderhammer of Ragnarok", "Axe", 100, 20, true, 9),
+    new weapon("Stormforged Devil Cometh", "Axe", 150, 15, true, 10),
+    new weapon("Blade of Godsfate", "Sword", 10, 100, true, 11),
 ];
-
+//Method that randomly assigns a weapon at certain points of the game.
 var weap = -1;
 function randomFromArray(arr){
     weap =  Math.floor(Math.random() * arr.length);
     return weap;
 }
-
+//Starts driver function and initializes all health
 function startGame() {
     state = {};
     player.health = 200;
-    ogre.health = 150;
-    wizard.health = 250;
-    demonbeast.health = 150;
-    guard.health = 300;
-    boss.health = 300;
+    ogre.health = 600;
+    wizard.health = 300;
+    demonbeast.health = 300;
+    guard.health = 700;
+    boss.health = 900;
     showText(1);
 }
-
+//Method that allows players to switch weapons on certain nodes
 function changeWeapon(oldWeapon, newWeapon) {
     if (player.weapon === oldWeapon) {
         player.weapon = newWeapon;
     } else {
         player.weapon = oldWeapon
     }
-
+    //Displays in game message
+    toWeapon(player.weapon.trans);
     console.log(textElement.innerText.indexOf("\nNordir swapped to the"));
     if (textElement.innerText.indexOf("\nNordir swapped to the") !== -1) {
         textElement.innerText = textElement.innerText.slice(0, textElement.innerText.indexOf("\nNordir swapped to the"));
     }
-
     textElement.innerText += " \nNordir swapped to the " + player.weapon.name;
-    var textL = document.getElementById("text-bar");
-    textL.scrollTop = textL.scrollHeight;
+    
+    scrollBot();
     console.log(player.weapon);
 }
-
+//Scrolls to the bottom of text when attacking
+function scrollBot(){
+    var textL = document.getElementById("text-bar");
+    textL.scrollTop = textL.scrollHeight; 
+}
+//Method that handles all combat inputs
 var dodgeCount = 0;
 function attackMove(attack, enemy, playerWin, enemyWin) {
     let dodge = false;
     console.log(dodgeCount)
+    //Ran if player chooses to strike
     if (attack.text === "Strike") {
         textElement.innerText += " \nNordir launches a strike at the enemy";
-        var textL = document.getElementById("text-bar");
-        textL.scrollTop = textL.scrollHeight;
-
+        //Scrolls to the bottom of text when attacking
+        scrollBot();
         let damage = player.weapon.damage;
+        //Rolls to determine critical strike chance for Nordir
         let crit = Math.floor(Math.random() * 100);
+        //Determines if the roll is viable for critical strike
         if (crit <= player.weapon.critChance) {
             damage *= 2;
             textElement.innerText += " \nNordir's strike hits critically";
@@ -165,28 +172,27 @@ function attackMove(attack, enemy, playerWin, enemyWin) {
             textL.scrollTop = textL.scrollHeight;
         }
         enemy.health -= damage;
-
+        //Prints text of enemy health after a strike
         textElement.innerText += " \nEnemy Health: " + enemy.health;
-        var textL = document.getElementById("text-bar");
-        textL.scrollTop = textL.scrollHeight;
+        scrollBot();
+    //Ran if player chooses to dodge
     } else if (attack.text === "Dodge") {
         textElement.innerText += " \nNordir executes a dodge";
-        var textL = document.getElementById("text-bar");
-        textL.scrollTop = textL.scrollHeight;
+        scrollBot();
         dodge = true;
         dodgeCount++;
-
+        //Checks the Dodge count runs
         if (dodgeCount === 3 || dodgeCount === 4) {
             if (dodgeCount === 3){
+                //Gives message if player dodges too many times
                 textElement.innerText += " \nThe enemy begins to understand your attacks";
-                var textL = document.getElementById("text-bar");
-                textL.scrollTop = textL.scrollHeight;
+                scrollBot();
             } else if (dodgeCount === 4) {
                 textElement.innerText += " \nThe enemy is preparing to counter your attacks.";
-                var textL = document.getElementById("text-bar");
-                textL.scrollTop = textL.scrollHeight;
+                scrollBot();
             }
         }
+    //Ran if player chooses to execute a brutality
     } else {
         textElement.innerText += " \nNordir attempts to launch a brutal strike at the enemy";
         var textL = document.getElementById("text-bar");
@@ -1165,6 +1171,98 @@ function openBest() {
         timesclick2++;
         
     }
+}
+function toWeapon(index) {
+    switch (index){
+        case 0: 
+        document.getElementById("hollow").className = "classWeaponOut";
+        setTimeout(function(){ 
+        document.getElementById("hollow").classList.remove("classWeaponOut");
+        console.log("done");
+         }, 2000);
+        break;
+        case 1: 
+        console.log("done");
+            document.getElementById("Ex").className = "classWeaponOut";
+            setTimeout(function(){ 
+                document.getElementById("Ex").classList.remove("classWeaponOut")
+                 }, 2000);
+
+        break;
+        case 2: 
+        console.log("done");
+            document.getElementById("Hellfire").className = "classWeaponOut";
+            setTimeout(function(){ 
+                document.getElementById("Hellfire").classList.remove("classWeaponOut")
+                 }, 2000);
+        break;
+        case 3: 
+        console.log("done");
+            document.getElementById("Legion").className = "classWeaponOut";
+            setTimeout(function(){ 
+                document.getElementById("Legion").classList.remove("classWeaponOut")
+                 }, 2000);
+        break;
+        case 4: 
+            document.getElementById("Fury").className = "classWeaponOut";
+            setTimeout(function(){ 
+                document.getElementById("Fury").classList.remove("classWeaponOut")
+                 }, 2000);
+        break;
+        case 5: 
+            document.getElementById("Fate").className = "classWeaponOut";
+            setTimeout(function(){ 
+                document.getElementById("Fate").classList.remove("classWeaponOut")
+                 }, 2000);
+        break;
+        case 6: 
+            document.getElementById("Steady").className = "classWeaponOut";
+            setTimeout(function(){ 
+                document.getElementById("Steady").classList.remove("classWeaponOut")
+                 }, 2000);
+        break;
+        case 7: 
+            document.getElementById("Might").className = "classWeaponOut";
+            setTimeout(function(){ 
+                document.getElementById("Might").classList.remove("classWeaponOut")
+                 }, 2000);
+        break;
+        case 8: 
+            document.getElementById("Durendal").className = "classWeaponOut";
+            setTimeout(function(){ 
+                document.getElementById("Durendal").classList.remove("classWeaponOut")
+                 }, 2000);
+        break;
+        case 9: 
+            document.getElementById("Ragnarok").className = "classWeaponOut";
+            setTimeout(function(){ 
+                document.getElementById("Ragnarok").classList.remove("classWeaponOut")
+                 }, 2000);
+        break;
+        case 10:
+            document.getElementById("Cometh").className = "classWeaponOut";
+            setTimeout(function(){ 
+                document.getElementById("Cometh").classList.remove("classWeaponOut")
+                 }, 2000);
+        break;
+        case 11: 
+            document.getElementById("Godsfate").className = "classWeaponOut";
+            setTimeout(function(){ 
+                document.getElementById("Godsfate").classList.remove("classWeaponOut")
+                 }, 2000);
+        break;
+        case 12:
+            console.log("done");
+            document.getElementById("Thundership").className = "classWeaponOut";
+            setTimeout(function(){ 
+                document.getElementById("Thundership").classList.remove("classWeaponOut")
+                 }, 2000);
+            break;
+        
+
+    }
+    
+
 }
 document.getElementsByClassName("title-screen")[0].style.display = "block";
     document.getElementsByClassName("title-screen")[1].style.display = "block";
