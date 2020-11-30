@@ -148,7 +148,7 @@ function changeWeapon(oldWeapon, newWeapon) {
 //Scrolls to the bottom of text when attacking
 function scrollBot(){
     var textL = document.getElementById("text-bar");
-    textL.scrollTop = textL.scrollHeight; 
+    textL.scrollTop = textL.scrollHeight;
 }
 //Method that handles all combat inputs
 var dodgeCount = 0;
@@ -174,7 +174,7 @@ function attackMove(attack, enemy, playerWin, enemyWin) {
         //Prints text of enemy health after a strike
         textElement.innerText += " \nEnemy Health: " + enemy.health;
         scrollBot();
-    //Ran if player chooses to dodge
+        //Ran if player chooses to dodge
     } else if (attack.text === "Dodge") {
         textElement.innerText += " \nNordir executes a dodge";
         scrollBot();
@@ -191,7 +191,7 @@ function attackMove(attack, enemy, playerWin, enemyWin) {
                 scrollBot();
             }
         }
-    //Ran if player chooses to execute a brutality
+        //Ran if player chooses to execute a brutality
     } else {
         textElement.innerText += " \nNordir attempts to launch a brutal strike at the enemy";
         var textL = document.getElementById("text-bar");
@@ -220,7 +220,7 @@ function attackMove(attack, enemy, playerWin, enemyWin) {
         dodgeCount = 0;
         player.health = 250;
         return showText(playerWin);
-    //Begins enemy attack
+        //Begins enemy attack
     } else {
         //Kills Nordir if he's dodged 5 attacks
         if (dodgeCount === 5) {
@@ -256,7 +256,6 @@ function attackMove(attack, enemy, playerWin, enemyWin) {
             scrollBot();
             sleep(5000)
             //Resets Nordir's weapon
-            dodgeCount = 0;
             player.weapon = new weapon("Sword of Thundership", "Sword", 40, 40, false, 12);
             player.health = 200;
             return showText(enemyWin);
@@ -340,10 +339,7 @@ function selectOption(option) {
     const nextTextNodeID = option.nextText;
     //Restarts game when die or victory
     if (nextTextNodeID <= 0) {
-            toTrans(15);
-            return startGame();
-       
-        
+        location.reload()
     }
     //Continues text to next node
     showText(nextTextNodeID);
@@ -1051,13 +1047,13 @@ const storyPath = [
         ], false, 16),
 
     new storyNode(100, "Nordir makes a quick move and stabs Aant' El through the heart. \nNordir: \"You are done Aant' El,"+
-    " the Montcore have no power here as long as I am here to protect it.\" "+
-    "\nAant' El weakly forces out his final words. \nAant' El: \"Very well, the Montcore are a patient breed,"+
-    " we'll have your soul soon. Like vultures circling meatbile we circle you Nordir.\"\n Nordir, tired of the"+
-    " rumblings removes his sword from Aant' El's midsection on slices off his head. \nNordir: \"Enough of the "+
-    "speculation, for I'm not finished yet. Let it be known by the slaying of Aant' El, I am a fierce warrior. "+
-    "Only with permission shall death take me, and I will not grant it without first securing my people.\"\n"+
-    " Nordir attaches Aant' El's head to his belt and retires to his home in Elroy.",
+        " the Montcore have no power here as long as I am here to protect it.\" "+
+        "\nAant' El weakly forces out his final words. \nAant' El: \"Very well, the Montcore are a patient breed,"+
+        " we'll have your soul soon. Like vultures circling meatbile we circle you Nordir.\"\n Nordir, tired of the"+
+        " rumblings removes his sword from Aant' El's midsection on slices off his head. \nNordir: \"Enough of the "+
+        "speculation, for I'm not finished yet. Let it be known by the slaying of Aant' El, I am a fierce warrior. "+
+        "Only with permission shall death take me, and I will not grant it without first securing my people.\"\n"+
+        " Nordir attaches Aant' El's head to his belt and retires to his home in Elroy.",
         [
             {
                 text: "Restart",
@@ -1073,11 +1069,11 @@ class pkg {
     cTrans;
     //Left Character Transition
     ctrans2;
-    
+
     constructor (bTrans, cTrans, cTrans2) {
-    this.bTrans = bTrans;
-    this.cTrans = cTrans;
-    this.cTrans2 = cTrans2;
+        this.bTrans = bTrans;
+        this.cTrans = cTrans;
+        this.cTrans2 = cTrans2;
     }
 }
 //Array full of Transition packages
@@ -1121,7 +1117,7 @@ function toTrans(index){
         for (var i = 0; i < fullTransitions.length; i++){
             //Makes sure ID exists
             if (fullTransitions[i].cTrans2 !== "N"){
-        document.getElementById(fullTransitions[i].cTrans2).style.display = "none";
+                document.getElementById(fullTransitions[i].cTrans2).style.display = "none";
             }
         }
     }
@@ -1149,7 +1145,7 @@ function toTrans(index){
             if (i != index && current != fullTransitions[i].cTrans){
                 //Makes sure character exists
                 if (fullTransitions[i].cTrans !== "N"){
-                document.getElementById(fullTransitions[i].cTrans).style.display = "none";
+                    document.getElementById(fullTransitions[i].cTrans).style.display = "none";
                 }
             }
         }
@@ -1166,8 +1162,8 @@ function toTrans(index){
             //Doesn't remove current character
             if (i != index && current != fullTransitions[i].cTrans2){
                 //Makes sure character exists
-                if (fullTransitions[i].cTrans2 !== "N"){ 
-                document.getElementById(fullTransitions[i].cTrans2).style.display = "none";
+                if (fullTransitions[i].cTrans2 !== "N"){
+                    document.getElementById(fullTransitions[i].cTrans2).style.display = "none";
                 }
             }
         }
@@ -1184,7 +1180,7 @@ function openWeap() {
     } else {
         document.getElementById("wea").style.display = "block";
         timesclick++;
-        
+
     }
 }
 //Function to open Bestiary box
@@ -1196,53 +1192,53 @@ function openBest() {
     } else {
         document.getElementById("bes").style.display = "block";
         timesclick2++;
-        
+
     }
 }
 //Function that shows weapon animation for indexed weapon
 function toWeapon(index) {
     switch (index){
-        case 0: 
+        case 0:
             weaponAnimation("hollow");
             break;
-        case 1: 
+        case 1:
             weaponAnimation("Ex");
             break;
-        case 2: 
+        case 2:
             weaponAnimation("Hellfire");
             break;
-        case 3: 
+        case 3:
             weaponAnimation("Legion");
             break;
-        case 4: 
+        case 4:
             weaponAnimation("Fury");
             break;
-        case 5: 
+        case 5:
             weaponAnimation("Fate");
             break;
-        case 6: 
+        case 6:
             weaponAnimation("Steady");
             break;
-        case 7: 
+        case 7:
             weaponAnimation("Might");
             break;
-        case 8: 
+        case 8:
             weaponAnimation("Durendal");
             break;
-        case 9: 
+        case 9:
             weaponAnimation("Ragnarok");
             break;
         case 10:
             weaponAnimation("Cometh");
             break;
-        case 11: 
+        case 11:
             weaponAnimation("Godsfate");
             break;
         case 12:
             weaponAnimation("Thundership");
             break;
     }
-    
+
 
 }
 //Runs animation and removes class
@@ -1250,7 +1246,7 @@ function weaponAnimation(weaponName){
     //Executes animation
     document.getElementById(weaponName).className = "classWeaponOut";
     //resets animation after 2 seconds
-    setTimeout(function(){ 
+    setTimeout(function(){
         document.getElementById(weaponName).classList.remove("classWeaponOut")
     }, 2000);
 }
@@ -1258,12 +1254,9 @@ function weaponAnimation(weaponName){
 document.getElementsByClassName("title-screen")[0].style.display = "block";
 document.getElementsByClassName("title-screen")[1].style.display = "block";
 //Begins game when clicked
-document.getElementById("start").addEventListener('click', function(){
+document.getElementById("start").addEventListener('click', function() {
     document.getElementById("screen1").style.display = "block";
     document.getElementsByClassName("title-screen")[0].style.display = "none";
     document.getElementsByClassName("title-screen")[1].style.display = "none";
     startGame();
-    });
-
-
-
+});
