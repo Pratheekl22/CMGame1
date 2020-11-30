@@ -256,6 +256,7 @@ function attackMove(attack, enemy, playerWin, enemyWin) {
             scrollBot();
             sleep(5000)
             //Resets Nordir's weapon
+            dodgeCount = 0;
             player.weapon = new weapon("Sword of Thundership", "Sword", 40, 40, false, 12);
             player.health = 200;
             return showText(enemyWin);
