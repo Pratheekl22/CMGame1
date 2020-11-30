@@ -750,7 +750,7 @@ const storyPath = [
                 text: "Let's talk",
                 nextText: 36
             }
-        ], false, 7),
+        ], false, 6),
 
     new weaponNode(randomFromArray(weapons), 31,
         "Nordir: \"Oh I'm afraid I interjected that in jest, I'm looking for a warlock called Heimindon the Fair, he is to guide me on a quest to slay Aant' El of Mont.\"\n Mysterious Stranger:"+
@@ -845,7 +845,7 @@ const storyPath = [
                 text: "Restart",
                 nextText: -1
             }
-        ], false, 6),
+        ], false, 17),
 
     new storyNode(38,
         "Nordir: \"Perhaps we shall refrain from having too much fun my quest requires a night's rest, maybe just " +
