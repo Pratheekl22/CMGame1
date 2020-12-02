@@ -6,7 +6,7 @@ let state = {};
 let playerPersonality = new personality("Good", 50, 50)
 //Player object initialization
 let player = new character("Nordir", "Player", playerPersonality,
-    new weapon("Sword of Thundership", "Sword", 40, 40, false, 12),
+    new weapon("Sword of Thundership", "Sword", 80, 40, false, 12),
     [{
         text: "Strike",
         damage: 40,
@@ -15,7 +15,7 @@ let player = new character("Nordir", "Player", playerPersonality,
         text: "Dodge",
     },{
         text: "Brutality"
-    }],200);
+    }],250);
 //Enemey Initialization
 let ogre = new character("Ogre", "Monster", null,
     new weapon("Mace of Macedom", "Mace", 30, 0, false),
@@ -31,14 +31,14 @@ let ogre = new character("Ogre", "Monster", null,
         text: "The ogre throws out a devastating punch",
         damage: 20,
         crit: 0
-    }], 600);
+    }], 550);
 
 let wizard = new character("Heimindon the Fair", "NPC", null,
     new weapon("Staff of Power", "Staff", 50, 10, false),
     [{
         text: "Heimindon calls a storm of power",
         damage: 50,
-        crit: 20
+        crit: 40
     },{
         text: "Heimindon shifts the ground below you",
         damage: 30,
@@ -46,8 +46,8 @@ let wizard = new character("Heimindon the Fair", "NPC", null,
     },{
         text: "Heimindon bends the air currents around you",
         damage: 20,
-        crit: 0
-    }], 300);
+        crit: 50
+    }], 600);
 
 let demonbeast = new character("Fuklar", "Monster", null,
     new weapon("Claws of the Hunter", "Demon claw", 40, 90, true),
@@ -63,7 +63,7 @@ let demonbeast = new character("Fuklar", "Monster", null,
         text: "The demonbeast calls to the shadows to strike you down",
         damage: 100,
         crit: 0
-    }], 300);
+    }], 400);
 
 let guard = new character("Montcore Guards", "Enemy", null,
     new weapon("Spear of the Servant", "Spear", 80, 0, false),
@@ -79,37 +79,37 @@ let guard = new character("Montcore Guards", "Enemy", null,
         text: "The guard attempts to bash you with his shield",
         damage: 100,
         crit: 0
-    }], 400);
+    }], 500);
 
 let boss = new character("Aant' El of Mont", "Boss", null,
     new weapon("The soul eater", "Legendary blade", 60, 60, false),
     [{
         text: "Aant withers your soul",
         damage: 50,
-        crit: 100
+        crit: 60
     },{
         text: "Aant loosens your ties with the overworld",
         damage: 40,
-        crit: 100
+        crit: 70
     },{
         text: "Aant awakens your most evil desires",
         damage: 70,
         crit: 50
-    }], 700);
+    }], 620);
 //Weapon Array with weapon initialization
 const weapons = [
     new weapon("Hollow Blade", "Sword", 0, 0, false, 0),
-    new weapon("Excalibur", "Sword", 40, 80, true, 1),
-    new weapon("Sword of Hellfire", "Sword", 50, 60, true, 2),
-    new weapon("Blade of Legion", "Sword", 40, 40, true, 3),
-    new weapon("Fury Blade", "Sword", 40, 70, true, 4),
-    new weapon("Blade of Erroneous Fate", "Sword", 90, 10, true, 5),
-    new weapon("Steady Blade", "Sword", 50, 50, true, 6),
-    new weapon("Warhammer of Might", "Axe", 80, 40, true, 7),
-    new weapon("Durendal", "Sword", 100, 100, true, 8),
-    new weapon("Thunderhammer of Ragnarok", "Axe", 100, 20, true, 9),
-    new weapon("Stormforged Devil Cometh", "Axe", 150, 15, true, 10),
-    new weapon("Blade of Godsfate", "Sword", 10, 100, true, 11),
+    new weapon("Excalibur", "Sword", 90, 40, true, 1),
+    new weapon("Sword of Hellfire", "Sword", 100, 40, true, 2),
+    new weapon("Blade of Legion", "Sword", 110, 50, true, 3),
+    new weapon("Fury Blade", "Sword", 120, 30, true, 4),
+    new weapon("Blade of Erroneous Fate", "Sword", 140, 30, true, 5),
+    new weapon("Steady Blade", "Sword", 100, 40, true, 6),
+    new weapon("Warhammer of Might", "Axe", 160, 20, true, 7),
+    new weapon("Durendal", "Sword", 200, 100, true, 8),
+    new weapon("Thunderhammer of Ragnarok", "Axe", 140, 20, true, 9),
+    new weapon("Stormforged Devil Cometh", "Sword", 200, 15, true, 10),
+    new weapon("Blade of Godsfate", "Sword", 300, 60, true, 11),
 ];
 //Method that randomly assigns a weapon at certain points of the game.
 var weap = -1;
@@ -198,7 +198,7 @@ function attackMove(attack, enemy, playerWin, enemyWin) {
         textL.scrollTop = textL.scrollHeight;
         //Rolls to determine if brutality is success
         let esc = Math.floor(Math.random() * 100);
-        if (esc <= 20) {
+        if (esc <= 60) {
             textElement.innerText += " \nNordir's attempt is successful";
             scrollBot();
             sleep(5000)
