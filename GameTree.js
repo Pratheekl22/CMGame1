@@ -31,7 +31,7 @@ let ogre = new character("Ogre", "Monster", null,
         text: "The ogre throws out a devastating punch",
         damage: 20,
         crit: 0
-    }], 550);
+    }], 400);
 
 let wizard = new character("Heimindon the Fair", "NPC", null,
     new weapon("Staff of Power", "Staff", 50, 10, false),
@@ -47,7 +47,7 @@ let wizard = new character("Heimindon the Fair", "NPC", null,
         text: "Heimindon bends the air currents around you",
         damage: 20,
         crit: 50
-    }], 600);
+    }], 800);
 
 let demonbeast = new character("Fuklar", "Monster", null,
     new weapon("Claws of the Hunter", "Demon claw", 40, 90, true),
@@ -63,14 +63,14 @@ let demonbeast = new character("Fuklar", "Monster", null,
         text: "The demonbeast calls to the shadows to strike you down",
         damage: 100,
         crit: 0
-    }], 400);
+    }], 700);
 
 let guard = new character("Montcore Guards", "Enemy", null,
     new weapon("Spear of the Servant", "Spear", 80, 0, false),
     [{
         text: "The Guard stabs at your throat",
         damage: 90,
-        crit: 50
+        crit: 40
     },{
         text: "The Guard attempts to knock you off your feet",
         damage: 30,
@@ -79,7 +79,7 @@ let guard = new character("Montcore Guards", "Enemy", null,
         text: "The guard attempts to bash you with his shield",
         damage: 100,
         crit: 0
-    }], 500);
+    }], 700);
 
 let boss = new character("Aant' El of Mont", "Boss", null,
     new weapon("The soul eater", "Legendary blade", 60, 60, false),
@@ -95,7 +95,7 @@ let boss = new character("Aant' El of Mont", "Boss", null,
         text: "Aant awakens your most evil desires",
         damage: 70,
         crit: 50
-    }], 620);
+    }], 900);
 //Weapon Array with weapon initialization
 const weapons = [
     new weapon("Hollow Blade", "Sword", 0, 0, false, 0),
