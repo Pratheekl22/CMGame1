@@ -121,9 +121,9 @@ function randomFromArray(arr){
 function startGame() {
     state = {};
     player.health = 200;
-    ogre.health = 600;
-    wizard.health = 300;
-    demonbeast.health = 300;
+    ogre.health = 400;
+    wizard.health = 800;
+    demonbeast.health = 700;
     guard.health = 700;
     boss.health = 900;
     showText(1);
