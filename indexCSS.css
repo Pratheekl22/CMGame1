@@ -178,6 +178,7 @@ body {
 #Heimindon{
     display: none;
     z-index: inherit;
+    transform: translate(0px,50px);
     
 }
 #Ogre{
@@ -192,6 +193,7 @@ body {
 #Aant{
     display: none;
     z-index: inherit;
+    transform: translate(0px,150px);
     
 }
 #Fuklar{
